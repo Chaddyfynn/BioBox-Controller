@@ -32,6 +32,19 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.directionText = new System.Windows.Forms.Label();
+            this.speedText = new System.Windows.Forms.Label();
+            this.modeText = new System.Windows.Forms.Label();
+            this.statusText2 = new System.Windows.Forms.Label();
+            this.connectionLabel = new System.Windows.Forms.Label();
+            this.runningStatus = new System.Windows.Forms.Label();
+            this.consoleText = new System.Windows.Forms.Label();
+            this.controlInformationText = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.modeLabel = new System.Windows.Forms.Label();
+            this.speedLabel = new System.Windows.Forms.Label();
+            this.directionLabel = new System.Windows.Forms.Label();
+            this.runningStatusLabel = new System.Windows.Forms.Label();
             this.delayLabel = new System.Windows.Forms.Label();
             this.elapsedTitleText = new System.Windows.Forms.Label();
             this.countdownText = new System.Windows.Forms.Label();
@@ -71,19 +84,6 @@
             this.countdownTimer = new System.Windows.Forms.Timer(this.components);
             this.delayTimer = new System.Windows.Forms.Timer(this.components);
             this.runTimer = new System.Windows.Forms.Timer(this.components);
-            this.runningStatusLabel = new System.Windows.Forms.Label();
-            this.runningStatus = new System.Windows.Forms.Label();
-            this.statusText2 = new System.Windows.Forms.Label();
-            this.connectionLabel = new System.Windows.Forms.Label();
-            this.directionLabel = new System.Windows.Forms.Label();
-            this.speedLabel = new System.Windows.Forms.Label();
-            this.modeLabel = new System.Windows.Forms.Label();
-            this.modeText = new System.Windows.Forms.Label();
-            this.speedText = new System.Windows.Forms.Label();
-            this.directionText = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.consoleText = new System.Windows.Forms.Label();
-            this.controlInformationText = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -139,6 +139,125 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "General";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // directionText
+            // 
+            this.directionText.AutoSize = true;
+            this.directionText.Location = new System.Drawing.Point(122, 224);
+            this.directionText.Name = "directionText";
+            this.directionText.Size = new System.Drawing.Size(46, 15);
+            this.directionText.TabIndex = 8;
+            this.directionText.Text = "Not Set";
+            // 
+            // speedText
+            // 
+            this.speedText.AutoSize = true;
+            this.speedText.Location = new System.Drawing.Point(122, 209);
+            this.speedText.Name = "speedText";
+            this.speedText.Size = new System.Drawing.Size(46, 15);
+            this.speedText.TabIndex = 8;
+            this.speedText.Text = "Not Set";
+            // 
+            // modeText
+            // 
+            this.modeText.AutoSize = true;
+            this.modeText.Location = new System.Drawing.Point(122, 194);
+            this.modeText.Name = "modeText";
+            this.modeText.Size = new System.Drawing.Size(46, 15);
+            this.modeText.TabIndex = 8;
+            this.modeText.Text = "Not Set";
+            // 
+            // statusText2
+            // 
+            this.statusText2.AutoSize = true;
+            this.statusText2.Location = new System.Drawing.Point(122, 244);
+            this.statusText2.Name = "statusText2";
+            this.statusText2.Size = new System.Drawing.Size(79, 15);
+            this.statusText2.TabIndex = 6;
+            this.statusText2.Text = "Disconnected";
+            // 
+            // connectionLabel
+            // 
+            this.connectionLabel.AutoSize = true;
+            this.connectionLabel.Location = new System.Drawing.Point(6, 244);
+            this.connectionLabel.Name = "connectionLabel";
+            this.connectionLabel.Size = new System.Drawing.Size(115, 15);
+            this.connectionLabel.TabIndex = 7;
+            this.connectionLabel.Text = "Connection Status - ";
+            // 
+            // runningStatus
+            // 
+            this.runningStatus.AutoSize = true;
+            this.runningStatus.Location = new System.Drawing.Point(122, 259);
+            this.runningStatus.Name = "runningStatus";
+            this.runningStatus.Size = new System.Drawing.Size(75, 15);
+            this.runningStatus.TabIndex = 5;
+            this.runningStatus.Text = "Not Running";
+            // 
+            // consoleText
+            // 
+            this.consoleText.AutoEllipsis = true;
+            this.consoleText.AutoSize = true;
+            this.consoleText.Location = new System.Drawing.Point(6, 173);
+            this.consoleText.Name = "consoleText";
+            this.consoleText.Size = new System.Drawing.Size(57, 15);
+            this.consoleText.TabIndex = 5;
+            this.consoleText.Text = "Waiting...";
+            // 
+            // controlInformationText
+            // 
+            this.controlInformationText.AutoSize = true;
+            this.controlInformationText.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.controlInformationText.Location = new System.Drawing.Point(3, 138);
+            this.controlInformationText.Name = "controlInformationText";
+            this.controlInformationText.Size = new System.Drawing.Size(167, 15);
+            this.controlInformationText.TabIndex = 5;
+            this.controlInformationText.Text = "BioBox Control  Information:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 158);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(179, 15);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Most Recent Console Message - ";
+            // 
+            // modeLabel
+            // 
+            this.modeLabel.AutoSize = true;
+            this.modeLabel.Location = new System.Drawing.Point(6, 194);
+            this.modeLabel.Name = "modeLabel";
+            this.modeLabel.Size = new System.Drawing.Size(49, 15);
+            this.modeLabel.TabIndex = 5;
+            this.modeLabel.Text = "Mode - ";
+            // 
+            // speedLabel
+            // 
+            this.speedLabel.AutoSize = true;
+            this.speedLabel.Location = new System.Drawing.Point(6, 209);
+            this.speedLabel.Name = "speedLabel";
+            this.speedLabel.Size = new System.Drawing.Size(66, 15);
+            this.speedLabel.TabIndex = 5;
+            this.speedLabel.Text = "Set Speed -";
+            // 
+            // directionLabel
+            // 
+            this.directionLabel.AutoSize = true;
+            this.directionLabel.Location = new System.Drawing.Point(6, 224);
+            this.directionLabel.Name = "directionLabel";
+            this.directionLabel.Size = new System.Drawing.Size(66, 15);
+            this.directionLabel.TabIndex = 5;
+            this.directionLabel.Text = "Direction - ";
+            // 
+            // runningStatusLabel
+            // 
+            this.runningStatusLabel.AutoSize = true;
+            this.runningStatusLabel.Location = new System.Drawing.Point(6, 259);
+            this.runningStatusLabel.Name = "runningStatusLabel";
+            this.runningStatusLabel.Size = new System.Drawing.Size(83, 15);
+            this.runningStatusLabel.TabIndex = 5;
+            this.runningStatusLabel.Text = "Motor Status -";
             // 
             // delayLabel
             // 
@@ -517,125 +636,6 @@
             // runTimer
             // 
             this.runTimer.Tick += new System.EventHandler(this.runTimer_Tick);
-            // 
-            // runningStatusLabel
-            // 
-            this.runningStatusLabel.AutoSize = true;
-            this.runningStatusLabel.Location = new System.Drawing.Point(6, 259);
-            this.runningStatusLabel.Name = "runningStatusLabel";
-            this.runningStatusLabel.Size = new System.Drawing.Size(83, 15);
-            this.runningStatusLabel.TabIndex = 5;
-            this.runningStatusLabel.Text = "Motor Status -";
-            // 
-            // runningStatus
-            // 
-            this.runningStatus.AutoSize = true;
-            this.runningStatus.Location = new System.Drawing.Point(122, 259);
-            this.runningStatus.Name = "runningStatus";
-            this.runningStatus.Size = new System.Drawing.Size(75, 15);
-            this.runningStatus.TabIndex = 5;
-            this.runningStatus.Text = "Not Running";
-            // 
-            // statusText2
-            // 
-            this.statusText2.AutoSize = true;
-            this.statusText2.Location = new System.Drawing.Point(122, 244);
-            this.statusText2.Name = "statusText2";
-            this.statusText2.Size = new System.Drawing.Size(79, 15);
-            this.statusText2.TabIndex = 6;
-            this.statusText2.Text = "Disconnected";
-            // 
-            // connectionLabel
-            // 
-            this.connectionLabel.AutoSize = true;
-            this.connectionLabel.Location = new System.Drawing.Point(6, 244);
-            this.connectionLabel.Name = "connectionLabel";
-            this.connectionLabel.Size = new System.Drawing.Size(115, 15);
-            this.connectionLabel.TabIndex = 7;
-            this.connectionLabel.Text = "Connection Status - ";
-            // 
-            // directionLabel
-            // 
-            this.directionLabel.AutoSize = true;
-            this.directionLabel.Location = new System.Drawing.Point(6, 224);
-            this.directionLabel.Name = "directionLabel";
-            this.directionLabel.Size = new System.Drawing.Size(66, 15);
-            this.directionLabel.TabIndex = 5;
-            this.directionLabel.Text = "Direction - ";
-            // 
-            // speedLabel
-            // 
-            this.speedLabel.AutoSize = true;
-            this.speedLabel.Location = new System.Drawing.Point(6, 209);
-            this.speedLabel.Name = "speedLabel";
-            this.speedLabel.Size = new System.Drawing.Size(66, 15);
-            this.speedLabel.TabIndex = 5;
-            this.speedLabel.Text = "Set Speed -";
-            // 
-            // modeLabel
-            // 
-            this.modeLabel.AutoSize = true;
-            this.modeLabel.Location = new System.Drawing.Point(6, 194);
-            this.modeLabel.Name = "modeLabel";
-            this.modeLabel.Size = new System.Drawing.Size(49, 15);
-            this.modeLabel.TabIndex = 5;
-            this.modeLabel.Text = "Mode - ";
-            // 
-            // modeText
-            // 
-            this.modeText.AutoSize = true;
-            this.modeText.Location = new System.Drawing.Point(122, 194);
-            this.modeText.Name = "modeText";
-            this.modeText.Size = new System.Drawing.Size(46, 15);
-            this.modeText.TabIndex = 8;
-            this.modeText.Text = "Not Set";
-            // 
-            // speedText
-            // 
-            this.speedText.AutoSize = true;
-            this.speedText.Location = new System.Drawing.Point(122, 209);
-            this.speedText.Name = "speedText";
-            this.speedText.Size = new System.Drawing.Size(46, 15);
-            this.speedText.TabIndex = 8;
-            this.speedText.Text = "Not Set";
-            // 
-            // directionText
-            // 
-            this.directionText.AutoSize = true;
-            this.directionText.Location = new System.Drawing.Point(122, 224);
-            this.directionText.Name = "directionText";
-            this.directionText.Size = new System.Drawing.Size(46, 15);
-            this.directionText.TabIndex = 8;
-            this.directionText.Text = "Not Set";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 158);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(179, 15);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Most Recent Console Message - ";
-            // 
-            // consoleText
-            // 
-            this.consoleText.AutoEllipsis = true;
-            this.consoleText.AutoSize = true;
-            this.consoleText.Location = new System.Drawing.Point(6, 173);
-            this.consoleText.Name = "consoleText";
-            this.consoleText.Size = new System.Drawing.Size(57, 15);
-            this.consoleText.TabIndex = 5;
-            this.consoleText.Text = "Waiting...";
-            // 
-            // controlInformationText
-            // 
-            this.controlInformationText.AutoSize = true;
-            this.controlInformationText.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.controlInformationText.Location = new System.Drawing.Point(3, 138);
-            this.controlInformationText.Name = "controlInformationText";
-            this.controlInformationText.Size = new System.Drawing.Size(167, 15);
-            this.controlInformationText.TabIndex = 5;
-            this.controlInformationText.Text = "BioBox Control  Information:";
             // 
             // mainForm
             // 
