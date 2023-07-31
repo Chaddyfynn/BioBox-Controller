@@ -28,6 +28,9 @@ namespace BioBox_Controller
         private int time = 0; // Current time elapsed
         private int countdown; // Current delay countdown time
         private bool connect = false; // Bool for if app should connect to port
+        private bool runFan = false;
+        private bool fanRunning = false;
+        private string fanTime;
 
         public mainForm()
         {
@@ -43,6 +46,14 @@ namespace BioBox_Controller
             InitializeComponent(); // Build the form
             portSelect.DataSource = portNames;  // Set the dropdown menu texts to the portNames array
             activePortText.Text = portName; // set the active port label to the selected port
+            port = new SerialPort();
+            port.BaudRate = 9600;
+
+            //Open the Second Form
+            PositionForm positionForm = new PositionForm();
+
+            // Show the settings form
+            // positionForm.Show();
         }
 
         private void mainForm_Load(object sender, EventArgs e)
@@ -54,14 +65,20 @@ namespace BioBox_Controller
         {
             if (connect)
             {
-                port = new SerialPort();
-                port.BaudRate = 9600;
-                port.PortName = portName;
-                port.Open();
-                port.WriteLine(msg);
-                Console.WriteLine(msg + " sent to port " + portName);
-                consoleText.Text = msg + " send to port " + portName;
-                port.Close();
+                try
+                {
+                    port.Open();
+                    port.WriteLine(msg);
+                    Console.WriteLine(msg + " sent to port " + portName);
+                    consoleText.Text = msg + " send to port " + portName;
+                    port.Close();
+                }
+                catch
+                {
+                    Console.WriteLine(msg + "denied due to external device error! Please re-try");
+                    consoleText.Text = msg + "denied due to external device error! Please re-try";
+                    // sendToPort(msg);
+                }
             }
             else
             {
@@ -92,64 +109,78 @@ namespace BioBox_Controller
             applySettingsButton.Enabled = true;
             connectButton.Enabled = true;
             disconnectButton.Enabled = true;
+            if (fanTimer.Enabled)
+            {
+                sendToPort("T0");
+                fanTimer.Enabled = false;
+                fanRunning = false;
+                fanStatusText.Text = "Not Running";
+            }
+            else
+            {
+                fanTimer.Enabled = true;
+            }
         }
 
         private void startButton_Click(object sender, EventArgs e) // Start Button Click
         {
-            int num;
-            Console.WriteLine("Start pressed...");
-            consoleText.Text = "Start pressed...";
-            if (delayed)
+            bool startDialogReturn = true;
+            if (!connect) { startDialogReturn = startDialog(); }
+            if (startDialogReturn)
             {
-                delayTimer.Enabled = false;
-                time = 0;
-                countdown = int.Parse(delay);
-                elapsedText.Text = "0 s";
-            }
-            if (int.TryParse(delay, out num) && (delay != "0"))
-            {
-                timer.Enabled = false;
-                elapsedText.Text = "0 s";
-                delayTimer.Enabled = false;
-                runTimer.Enabled = false;
-                Console.WriteLine("Delayed for " + num + " s");
-                consoleText.Text = "Delayed for " + num + " s";
-                countdown = num;
-                delayTimer.Interval = num * 1000;
-                countdownTimer.Enabled = true;
-                delayTimer.Enabled = true;
-                countdownText.Text = num.ToString() + " s";
-                runningStatus.Text = "Delayed";
-                delayed = true;
-            }
-            else
-            {
-                sendToPort("c1"); //c1: control 1 - start
-                timer.Enabled = true;
-                countdownText.Text = "N/A";
-                elapsedText.Text = "0 s";
-                if (useRunTime && (runTime != "0"))
+                int num;
+                Console.WriteLine("Start pressed...");
+                consoleText.Text = "Start pressed...";
+                if (delayed)
                 {
-                    runTimer.Interval = int.Parse(runTime) * 1000;
-                    runTimer.Enabled = true;
+                    delayTimer.Enabled = false;
+                    time = 0;
+                    countdown = int.Parse(delay);
+                    elapsedText.Text = "0 s";
                 }
-                runningStatus.Text = "Running";
+                if (int.TryParse(delay, out num) && (delay != "0"))
+                {
+                    timer.Enabled = false;
+                    elapsedText.Text = "0 s";
+                    delayTimer.Enabled = false;
+                    runTimer.Enabled = false;
+                    Console.WriteLine("Delayed for " + num + " s");
+                    consoleText.Text = "Delayed for " + num + " s";
+                    countdown = num;
+                    delayTimer.Interval = num * 1000;
+                    countdownTimer.Enabled = true;
+                    delayTimer.Enabled = true;
+                    countdownText.Text = num.ToString() + " s";
+                    runningStatus.Text = "Delayed";
+                    delayed = true;
+                }
+                else
+                {
+                    sendToPort("c1"); //c1: control 1 - start
+                    timer.Enabled = true;
+                    countdownText.Text = "N/A";
+                    elapsedText.Text = "0 s";
+                    if (useRunTime && (runTime != "0"))
+                    {
+                        runTimer.Interval = int.Parse(runTime) * 1000;
+                        runTimer.Enabled = true;
+                    }
+                    runningStatus.Text = "Running";
+                    if (runFan && !(fanTimer.Enabled))
+                    {
+                        sendToPort("T1");
+                        fanRunning = true;
+                        fanStatusText.Text = "Running";
+                    }
+                    else if (runFan && (fanTimer.Enabled))
+                    {
+                        fanTimer.Enabled = false;
+                    }
+                }
+                applySettingsButton.Enabled = false;
+                connectButton.Enabled = false;
+                disconnectButton.Enabled = false;
             }
-            applySettingsButton.Enabled = false;
-            connectButton.Enabled = false;
-            disconnectButton.Enabled = false;
-        }
-
-        private void rotateButton_Click(object sender, EventArgs e)
-        {
-            sendToPort("f0"); //f0: function 0 - rotate
-            modeText.Text = "Rotate";
-        }
-
-        private void vibrateButton_Click(object sender, EventArgs e)
-        {
-            sendToPort("f1"); //f1: function 1 - vibrate
-            modeText.Text = "Vibrate";
         }
 
         private void reloadButton_Click(object sender, EventArgs e)
@@ -197,6 +228,31 @@ namespace BioBox_Controller
                 useRunTime = false;
             }
             activeRunTimeText.Text = runTime + " s";
+            if ((fanTimeInput.Text.Length > 0) && long.TryParse(fanTimeInput.Text, out num))
+            {
+                if (fanTimeInput.Text.Contains("-"))
+                {
+                    fanTimeInput.Text = fanTimeInput.Text.Substring(1);
+                }
+                fanTime = fanTimeInput.Text;
+                Console.WriteLine("LOG: Fan cooldown updated - " + fanTime + " s");
+                consoleText.Text = "LOG: Fan cooldown updated - " + fanTime + " s";
+                activeFanTimeText.Text = fanTime + " s";
+                int time = int.Parse(fanTime);
+                if (time > 0) { fanTimer.Interval = time * 1000; }
+                else {
+                    fanTime = "5 s";
+                    fanTimer.Interval = 5000;
+                    activeFanTimeText.Text = fanTime;
+                }
+            }
+            else
+            {
+                fanTime = "5 s";
+                fanTimer.Interval = 5000;
+                activeFanTimeText.Text = fanTime;
+            }
+            
         }
 
         private void applyGeneralButton_Click(object sender, EventArgs e)
@@ -245,6 +301,16 @@ namespace BioBox_Controller
         private void delayTimer_Tick(object sender, EventArgs e)
         {
             sendToPort("c1");
+            if (runFan && !(fanTimer.Enabled))
+            {
+                sendToPort("T1");
+                fanRunning = true;
+                fanStatusText.Text = "Running";
+            }
+            else if (runFan && (fanTimer.Enabled))
+            {
+                fanTimer.Enabled = false;
+            }
             delayed = false;
             delayTimer.Enabled = false;
             countdownTimer.Enabled = false;
@@ -261,7 +327,28 @@ namespace BioBox_Controller
 
         private void stepButton_Click(object sender, EventArgs e)
         {
-            sendToPort("T0");
+            if (runFan && !timer.Enabled)
+            {
+                runFan = false;
+                stepButton.BackColor = Color.LightCoral;
+            }
+            else if (!runFan && !timer.Enabled)
+            {
+                runFan = true;
+                stepButton.BackColor = Color.LightGreen;
+            }
+            else if (runFan && timer.Enabled)
+            {
+                runFan = false;
+                stepButton.BackColor = Color.LightCoral;
+                sendToPort("T0");
+            }
+            else if (!runFan && timer.Enabled)
+            {
+                runFan = true;
+                stepButton.BackColor = Color.LightGreen;
+                sendToPort("T1");
+            }
         }
 
         private void connectButton_Click(object sender, EventArgs e)
@@ -283,6 +370,8 @@ namespace BioBox_Controller
                 consoleText.Text = "LOG: Port updated - " + portName;
                 statusText.Text = "Connected";
                 statusText2.Text = "Connected";
+                port.PortName = portName;
+                // port.Open();
             }
             else
             {
@@ -290,6 +379,14 @@ namespace BioBox_Controller
                 statusText.Text = "User Abort";
                 statusText2.Text = "User Abort";
             }
+        }
+
+        private bool startDialog()
+        {
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show("There are no active port connections... \n \n" +
+                " Continuing will have no action on any hardware...\n \n Do you want to continue anyway?", "User Notice!", buttons, MessageBoxIcon.Warning);
+            return result == DialogResult.Yes;
         }
 
         private void disconnectButton_Click(object sender, EventArgs e)
@@ -325,6 +422,15 @@ namespace BioBox_Controller
             applySettingsButton.Enabled = true;
             connectButton.Enabled = true;
             disconnectButton.Enabled = true;
+            fanTimer.Enabled = true;
+        }
+
+        private void fanTimer_Tick(object sender, EventArgs e)
+        {
+            sendToPort("T0");
+            fanRunning = false;
+            fanTimer.Enabled = false;
+            fanStatusText.Text = "Not Running";
         }
     }
 }
