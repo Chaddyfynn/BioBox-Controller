@@ -1,4 +1,6 @@
-﻿namespace BioBox_Controller
+﻿using System.Windows.Forms;
+
+namespace BioBox_Controller
 {
     partial class mainForm
     {
@@ -43,8 +45,10 @@
             this.speedLabel = new System.Windows.Forms.Label();
             this.directionLabel = new System.Windows.Forms.Label();
             this.runningStatusLabel = new System.Windows.Forms.Label();
+            this.fanStatusLabel = new System.Windows.Forms.Label();
             this.delayLabel = new System.Windows.Forms.Label();
             this.elapsedTitleText = new System.Windows.Forms.Label();
+            this.fanStatusText = new System.Windows.Forms.Label();
             this.countdownText = new System.Windows.Forms.Label();
             this.elapsedText = new System.Windows.Forms.Label();
             this.speedInput = new System.Windows.Forms.TextBox();
@@ -84,8 +88,6 @@
             this.delayTimer = new System.Windows.Forms.Timer(this.components);
             this.runTimer = new System.Windows.Forms.Timer(this.components);
             this.fanTimer = new System.Windows.Forms.Timer(this.components);
-            this.fanStatusLabel = new System.Windows.Forms.Label();
-            this.fanStatusText = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -240,6 +242,15 @@
             this.runningStatusLabel.TabIndex = 5;
             this.runningStatusLabel.Text = "Motor Status -";
             // 
+            // fanStatusLabel
+            // 
+            this.fanStatusLabel.AutoSize = true;
+            this.fanStatusLabel.Location = new System.Drawing.Point(6, 208);
+            this.fanStatusLabel.Name = "fanStatusLabel";
+            this.fanStatusLabel.Size = new System.Drawing.Size(69, 15);
+            this.fanStatusLabel.TabIndex = 4;
+            this.fanStatusLabel.Text = "Fan Status -";
+            // 
             // delayLabel
             // 
             this.delayLabel.AutoSize = true;
@@ -257,6 +268,15 @@
             this.elapsedTitleText.Size = new System.Drawing.Size(55, 15);
             this.elapsedTitleText.TabIndex = 4;
             this.elapsedTitleText.Text = "Elapsed -";
+            // 
+            // fanStatusText
+            // 
+            this.fanStatusText.AutoSize = true;
+            this.fanStatusText.Location = new System.Drawing.Point(122, 208);
+            this.fanStatusText.Name = "fanStatusText";
+            this.fanStatusText.Size = new System.Drawing.Size(75, 15);
+            this.fanStatusText.TabIndex = 4;
+            this.fanStatusText.Text = "Not Running";
             // 
             // countdownText
             // 
@@ -631,24 +651,6 @@
             this.fanTimer.Interval = 5000;
             this.fanTimer.Tick += new System.EventHandler(this.fanTimer_Tick);
             // 
-            // fanStatusLabel
-            // 
-            this.fanStatusLabel.AutoSize = true;
-            this.fanStatusLabel.Location = new System.Drawing.Point(6, 208);
-            this.fanStatusLabel.Name = "fanStatusLabel";
-            this.fanStatusLabel.Size = new System.Drawing.Size(69, 15);
-            this.fanStatusLabel.TabIndex = 4;
-            this.fanStatusLabel.Text = "Fan Status -";
-            // 
-            // fanStatusText
-            // 
-            this.fanStatusText.AutoSize = true;
-            this.fanStatusText.Location = new System.Drawing.Point(122, 208);
-            this.fanStatusText.Name = "fanStatusText";
-            this.fanStatusText.Size = new System.Drawing.Size(75, 15);
-            this.fanStatusText.TabIndex = 4;
-            this.fanStatusText.Text = "Not Running";
-            // 
             // mainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -659,14 +661,23 @@
             this.MaximizeBox = false;
             this.Name = "mainForm";
             this.Text = "BioBox Stir-Bar";
-            this.Load += new System.EventHandler(this.mainForm_Load);
             this.tabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
+            this.FormClosing += MainForm_FormClosing;
 
+        }
+
+        private void MainForm_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                Hide();
+            }
         }
 
         #endregion

@@ -48,17 +48,6 @@ namespace BioBox_Controller
             activePortText.Text = portName; // set the active port label to the selected port
             port = new SerialPort();
             port.BaudRate = 9600;
-
-            //Open the Second Form
-            PositionForm positionForm = new PositionForm();
-
-            // Show the settings form
-            // positionForm.Show();
-        }
-
-        private void mainForm_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void sendToPort(string msg) // Sends the argument to the active port
@@ -77,7 +66,7 @@ namespace BioBox_Controller
                 {
                     Console.WriteLine(msg + "denied due to external device error! Please re-try");
                     consoleText.Text = msg + "denied due to external device error! Please re-try";
-                    // sendToPort(msg);
+                    sendToPort(msg);
                 }
             }
             else
@@ -185,6 +174,7 @@ namespace BioBox_Controller
 
         private void reloadButton_Click(object sender, EventArgs e)
         {
+            portNames = SerialPort.GetPortNames();
             portSelect.DataSource = portNames;
         }
 
@@ -432,5 +422,6 @@ namespace BioBox_Controller
             fanTimer.Enabled = false;
             fanStatusText.Text = "Not Running";
         }
+
     }
 }
