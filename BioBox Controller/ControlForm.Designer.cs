@@ -168,6 +168,7 @@
             // 
             // topMenu
             // 
+            this.topMenu.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.topMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileButton,
             this.editButton,
@@ -192,7 +193,7 @@
             // openTimesheetToolStripMenuItem
             // 
             this.openTimesheetToolStripMenuItem.Name = "openTimesheetToolStripMenuItem";
-            this.openTimesheetToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openTimesheetToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.openTimesheetToolStripMenuItem.Text = "Open Timesheet";
             this.openTimesheetToolStripMenuItem.Click += new System.EventHandler(this.openTimesheetToolStripMenuItem_Click);
             // 

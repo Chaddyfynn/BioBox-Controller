@@ -560,18 +560,16 @@ namespace BioBox_Controller
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.FormClosing += TimesheetEditor_FormClosing;
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
-        private void TimesheetEditor_FormClosing1(object sender, FormClosingEventArgs e)
+        private void TimesheetEditor_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (e.CloseReason == CloseReason.UserClosing)
-            {
-                e.Cancel = true;
-                Hide();
-            };
+            e.Cancel = true;
+            Hide();
         }
 
 

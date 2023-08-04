@@ -86,7 +86,7 @@ namespace BioBox_Controller
 
         private void viewDocumentationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/Chaddyfynn/BioBox-Controller/releases");
+            System.Diagnostics.Process.Start("https://github.com/Chaddyfynn/BioBox-Controller/blob/main/BioBox%20Controller/Quick%20Start%20Guide/BioBox%20UI%20v2.0.0-alpha%20Quick%20Start%20Guide.pdf");
         }
 
         private void viewSourceToolStripMenuItem_Click(object sender, EventArgs e)
@@ -307,7 +307,7 @@ namespace BioBox_Controller
             if (result == DialogResult.Yes)
             {
                 connect = true;
-                vialPortName = motorPortSelect.Text;
+                vialPortName = vialPortSelect.Text;
                 motorPortName = motorPortSelect.Text;
                 motorPortActive.Text = motorPortSelect.Text;
                 vialPortActive.Text = vialPortSelect.Text;
@@ -359,9 +359,9 @@ namespace BioBox_Controller
                 running = false;
                 statusStat.Text = "Finished!";
                 notProcessing = true;
-                sendToPort("T0", true);
+                //sendToPort("T0", true);
                 coolingStatusStat.Text = "Not Cooling";
-                sendToPort("c0", true);
+                //sendToPort("c0", true);
                 motorStatusStat.Text = "Not Running";
             }
         }
@@ -424,6 +424,7 @@ namespace BioBox_Controller
                 sendToPort("V1", false);
             }
         }
+
     }
 
 }
