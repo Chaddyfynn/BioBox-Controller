@@ -41,7 +41,6 @@
             this.openTimesheetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.timesheetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.metadataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.vialControllerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stirBarControllerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -201,8 +200,7 @@
             // 
             this.editButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.editButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.timesheetToolStripMenuItem,
-            this.metadataToolStripMenuItem});
+            this.timesheetToolStripMenuItem});
             this.editButton.Image = ((System.Drawing.Image)(resources.GetObject("editButton.Image")));
             this.editButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.editButton.Name = "editButton";
@@ -212,15 +210,9 @@
             // timesheetToolStripMenuItem
             // 
             this.timesheetToolStripMenuItem.Name = "timesheetToolStripMenuItem";
-            this.timesheetToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.timesheetToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.timesheetToolStripMenuItem.Text = "Timesheet";
             this.timesheetToolStripMenuItem.Click += new System.EventHandler(this.timesheetToolStripMenuItem_Click);
-            // 
-            // metadataToolStripMenuItem
-            // 
-            this.metadataToolStripMenuItem.Name = "metadataToolStripMenuItem";
-            this.metadataToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
-            this.metadataToolStripMenuItem.Text = "Experiment Metadata";
             // 
             // viewButton
             // 
@@ -237,14 +229,14 @@
             // vialControllerToolStripMenuItem
             // 
             this.vialControllerToolStripMenuItem.Name = "vialControllerToolStripMenuItem";
-            this.vialControllerToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.vialControllerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.vialControllerToolStripMenuItem.Text = "Vial Controller";
             this.vialControllerToolStripMenuItem.Click += new System.EventHandler(this.vialControllerToolStripMenuItem_Click);
             // 
             // stirBarControllerToolStripMenuItem
             // 
             this.stirBarControllerToolStripMenuItem.Name = "stirBarControllerToolStripMenuItem";
-            this.stirBarControllerToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.stirBarControllerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.stirBarControllerToolStripMenuItem.Text = "Stir Bar Controller";
             this.stirBarControllerToolStripMenuItem.Click += new System.EventHandler(this.stirBarControllerToolStripMenuItem_Click);
             // 
@@ -294,6 +286,7 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.Thistle;
+            this.button1.Enabled = false;
             this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.button1.Location = new System.Drawing.Point(11, 303);
             this.button1.Name = "button1";
@@ -305,6 +298,7 @@
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.Thistle;
+            this.button2.Enabled = false;
             this.button2.ForeColor = System.Drawing.SystemColors.ControlText;
             this.button2.Location = new System.Drawing.Point(11, 274);
             this.button2.Name = "button2";
@@ -758,7 +752,6 @@
         private System.Windows.Forms.ToolStripDropDownButton editButton;
         private System.Windows.Forms.ToolStripMenuItem timesheetToolStripMenuItem;
         private System.Windows.Forms.ToolStripDropDownButton helpButton;
-        private System.Windows.Forms.ToolStripMenuItem metadataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewDocumentationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewSourceToolStripMenuItem;
         private System.Windows.Forms.ToolStripDropDownButton viewButton;

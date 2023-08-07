@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.IO.Ports;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
@@ -86,17 +87,18 @@ namespace BioBox_Controller
                 input7.Text,
                 input8.Text,
                 input9.Text,
+                input10.Text,
             };
-            int[] callibArrayInt = new int[9];
+            int[] callibArrayInt = new int[10];
             try
             {
-                for (int i = 0; i < 9; i++)
+                for (int i = 0; i < 10; i++)
                 {
                     if (callibArray[i].Contains("-"))
                     {
                         callibArray[i] = callibArray[i].Substring(1);
                     }
-                    if (callibArray[i] == "" || ((callibArray[i] == "0") && (i > 0 && i != 9)))
+                    if (callibArray[i] == "" || ((callibArray[i] == "0") && (i > 0 && i != 10)))
                     {
                         arrayIncomplete = true;
                         continue;
@@ -105,12 +107,12 @@ namespace BioBox_Controller
                 }
                 if (arrayIncomplete)
                 {
-                    int range = callibArrayInt[8] - callibArrayInt[0];
-                    int step = range / 9;
+                    int range = callibArrayInt[9] - callibArrayInt[0];
+                    int step = range / 10;
                     int dutyCycle = callibArrayInt[0];
-                    for (int i = 0; i < 9; i++)
+                    for (int i = 0; i < 10; i++)
                     {
-                        if (callibArray[i] == "" || ((callibArray[i] == "0") && (i > 0 && i != 9)))
+                        if (callibArray[i] == "" || ((callibArray[i] == "0") && (i > 0 && i != 10)))
                         {
                             callibArrayInt[i] = dutyCycle;
                         }
@@ -126,8 +128,9 @@ namespace BioBox_Controller
                 input7.Text = callibArrayInt[6].ToString();
                 input8.Text = callibArrayInt[7].ToString();
                 input9.Text = callibArrayInt[8].ToString();
+                input10.Text = callibArrayInt[9].ToString();
 
-                for (int i = 0; i < 9; i++)
+                for (int i = 0; i < 10; i++)
             {
                     sendToPort("C" + i.ToString() + "D" + callibArrayInt[i].ToString());
                     Console.WriteLine("C" + i.ToString() + "D" + callibArrayInt[i].ToString() + "\n\n" + "Sent!");
@@ -138,7 +141,7 @@ namespace BioBox_Controller
             {
                 MessageBoxButtons buttons = MessageBoxButtons.OK;
                 DialogResult result = MessageBox.Show("Please ensure all of your inputted values are numeric, and sensible.\n\n" +
-                    "You must fill in duty cycles for at least Vial 1 and Vial 9.", "WARNING!", buttons, MessageBoxIcon.Warning);
+                    "You must fill in duty cycles for at least Vial 1 and Vial 10.", "WARNING!", buttons, MessageBoxIcon.Warning);
             }
             
         }
@@ -249,6 +252,92 @@ namespace BioBox_Controller
         private void button13_Click(object sender, EventArgs e)
         {
             sendToPort("V1");
+        }
+
+        private void importButton_Click(object sender, EventArgs e)
+        {
+            var filePath = string.Empty;
+
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                // openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "Callibration CSV Files (*.csv)|*.csv|All files (*.*)|*.*";
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    clearButton_Click(sender, e);
+                    filePath = openFileDialog.FileName;
+                    var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+                    using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
+                    {
+                        string line;
+                        long counter = 0;
+                        while ((line = streamReader.ReadLine()) != null)
+                        {
+                            string[] newStrings = line.Split(',');
+                            input1.Text = newStrings[0];
+                            input2.Text = newStrings[1];
+                            input3.Text = newStrings[2];
+                            input4.Text = newStrings[3];
+                            input5.Text = newStrings[4];
+                            input6.Text = newStrings[5];
+                            input7.Text = newStrings[6];
+                            input8.Text = newStrings[7];
+                            input9.Text = newStrings[8];
+                            input10.Text = newStrings[9];
+                            counter++;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void exportButton_Click(object sender, EventArgs e)
+        {
+            string line = convertCallibToText();
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Timesheet CSV (*.csv)|*.csv|All Files (*.*)|*.*";
+            saveFileDialog.Title = "Save Timesheet";
+            saveFileDialog.ShowDialog();
+            if (saveFileDialog.FileName != "")
+            {
+                using (StreamWriter outputFile = new StreamWriter(saveFileDialog.FileName))
+                {
+                    outputFile.WriteLine(line);
+                }
+
+            }
+        }
+
+        private string convertCallibToText()
+        {
+            string output =
+                input1.Text + "," +
+                input2.Text + "," +
+                input3.Text + "," +
+                input4.Text + "," +
+                input5.Text + "," +
+                input6.Text + "," +
+                input7.Text + "," +
+                input8.Text + "," +
+                input9.Text + "," +
+                input10.Text;
+            return output;
+        }
+
+        private void clearButton_Click(object sender, EventArgs e)
+        {
+            input1.Text = "";
+            input2.Text = "";
+            input3.Text = "";
+            input4.Text = "";
+            input5.Text = "";
+            input6.Text = "";
+            input7.Text = "";
+            input8.Text = "";
+            input9.Text = "";
+            input10.Text = "";
         }
     }
 }

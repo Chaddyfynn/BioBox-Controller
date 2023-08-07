@@ -33,6 +33,7 @@ namespace BioBox_Controller
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TimesheetEditor));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.fileButton = new System.Windows.Forms.ToolStripDropDownButton();
+            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editButton = new System.Windows.Forms.ToolStripDropDownButton();
@@ -74,7 +75,6 @@ namespace BioBox_Controller
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -107,17 +107,24 @@ namespace BioBox_Controller
             this.fileButton.Size = new System.Drawing.Size(38, 22);
             this.fileButton.Text = "File";
             // 
+            // newToolStripMenuItem
+            // 
+            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.newToolStripMenuItem.Text = "New";
+            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
+            // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.openToolStripMenuItem.Text = "Open Timesheet";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.saveToolStripMenuItem.Text = "Save As";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
@@ -310,6 +317,7 @@ namespace BioBox_Controller
             // 
             // clsoeCupButton
             // 
+            this.clsoeCupButton.Enabled = false;
             this.clsoeCupButton.Location = new System.Drawing.Point(122, 251);
             this.clsoeCupButton.Name = "clsoeCupButton";
             this.clsoeCupButton.Size = new System.Drawing.Size(101, 23);
@@ -350,6 +358,7 @@ namespace BioBox_Controller
             // 
             // openCupButton
             // 
+            this.openCupButton.Enabled = false;
             this.openCupButton.Location = new System.Drawing.Point(15, 251);
             this.openCupButton.Name = "openCupButton";
             this.openCupButton.Size = new System.Drawing.Size(101, 23);
@@ -531,13 +540,6 @@ namespace BioBox_Controller
             this.label5.TabIndex = 1;
             this.label5.Text = "Action";
             // 
-            // newToolStripMenuItem
-            // 
-            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.newToolStripMenuItem.Text = "New";
-            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
-            // 
             // TimesheetEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -560,10 +562,9 @@ namespace BioBox_Controller
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.FormClosing += TimesheetEditor_FormClosing;
             this.ResumeLayout(false);
             this.PerformLayout();
-
+            this.FormClosing += TimesheetEditor_FormClosing;
         }
 
         private void TimesheetEditor_FormClosing(object sender, FormClosingEventArgs e)
