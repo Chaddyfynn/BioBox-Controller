@@ -6,7 +6,7 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
     <ROW Property="AI_APP_FILE" Value="[#BioBoxUI.exe]"/>
     <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
-    <ROW Property="AI_README_FILE" Value="[#BioBoxUIv2.0.0alphaQuickStartGuide.pdf]"/>
+    <ROW Property="AI_README_FILE" Value="[#BioBox_UI_Documentation.pdf]"/>
     <ROW Property="ALLUSERS" Value="1"/>
     <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
     <ROW Property="ARPCONTACT" Value="charlie.perkins@student.manchester.ac.uk"/>
@@ -17,11 +17,10 @@
     <ROW Property="ProductCode" Value="2057:{E883110F-D2BA-41F4-88C3-14A66CE2CCD4} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="BioBox UI"/>
-    <ROW Property="ProductVersion" Value="2.0.0" Options="32"/>
+    <ROW Property="ProductVersion" Value="2.1.0" Options="32"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{5F193159-AE22-44BF-AF57-BC672D89218B}"/>
-    <ROW Property="VIEWREADME" Value="1" Type="4"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
     <ROW Property="WindowsType9XDisplay" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
     <ROW Property="WindowsTypeNT40" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
@@ -39,7 +38,7 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
     <ROW Component="APPDIR" ComponentId="{A18FE739-B025-491B-B85E-3202398884A8}" Directory_="APPDIR" Attributes="0"/>
     <ROW Component="BioBoxUI.exe" ComponentId="{8D79A33D-A133-4460-9898-C2BCBC9F3FCC}" Directory_="APPDIR" Attributes="0" KeyPath="BioBoxUI.exe"/>
-    <ROW Component="BioBoxUIv2.0.0alphaQuickStartGuide.pdf" ComponentId="{356F5593-D2CF-4600-8315-B9811A5545AB}" Directory_="APPDIR" Attributes="0" KeyPath="BioBoxUIv2.0.0alphaQuickStartGuide.pdf" Type="0"/>
+    <ROW Component="BioBox_UI_Documentation.pdf" ComponentId="{EF6D84A3-F2ED-48D1-8F77-EE82FA41CBC8}" Directory_="APPDIR" Attributes="0" KeyPath="BioBox_UI_Documentation.pdf" Type="0"/>
     <ROW Component="ProductInformation" ComponentId="{8E851C3B-EE64-462E-9D39-E99B57DA820B}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
     <ROW Component="SHORTCUTDIR" ComponentId="{30D90EAA-5DD4-47F1-89B9-75CA0872F876}" Directory_="SHORTCUTDIR" Attributes="0"/>
   </COMPONENT>
@@ -49,7 +48,7 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
     <ROW File="BioBoxUI.exe" Component_="BioBoxUI.exe" FileName="BIOBOX~1.EXE|BioBox UI.exe" Attributes="0" SourcePath="bin\Release\app.publish\BioBox UI.exe" SelfReg="false"/>
-    <ROW File="BioBoxUIv2.0.0alphaQuickStartGuide.pdf" Component_="BioBoxUIv2.0.0alphaQuickStartGuide.pdf" FileName="BIOBOX~1.PDF|BioBox UI v2.0.0-alpha Quick Start Guide.pdf" Attributes="0" SourcePath="Quick Start Guide\BioBox UI v2.0.0-alpha Quick Start Guide.pdf" SelfReg="false"/>
+    <ROW File="BioBox_UI_Documentation.pdf" Component_="BioBox_UI_Documentation.pdf" FileName="BIOBOX~1.PDF|BioBox_UI_Documentation.pdf" Attributes="0" SourcePath="Quick Start Guide\BioBox_UI_Documentation.pdf" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BootstrOptComponent">
     <ROW BootstrOptKey="GlobalOptions" DownloadFolder="[AppDataFolder][|Manufacturer]\[|ProductName]\prerequisites" Options="2"/>
@@ -138,7 +137,7 @@
     <ROW Feature_="MainFeature" Component_="ProductInformation"/>
     <ROW Feature_="MainFeature" Component_="BioBoxUI.exe"/>
     <ROW Feature_="MainFeature" Component_="SHORTCUTDIR"/>
-    <ROW Feature_="MainFeature" Component_="BioBoxUIv2.0.0alphaQuickStartGuide.pdf"/>
+    <ROW Feature_="MainFeature" Component_="BioBox_UI_Documentation.pdf"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="BioBoxUI.exe" SourcePath="icon.ico" Index="0"/>

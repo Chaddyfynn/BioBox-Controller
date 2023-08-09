@@ -21,6 +21,7 @@ namespace BioBox_Controller
         private bool connect = false;
         private string[] portNames;
         private string portName;
+        private int totalVials;
 
         public PositionForm()
         {
@@ -75,75 +76,94 @@ namespace BioBox_Controller
 
         private void applyCalibButton_Click(object sender, EventArgs e)
         {
-            bool arrayIncomplete = false;
-            String[] callibArray =
-            {
-                input1.Text,
-                input2.Text,
-                input3.Text,
-                input4.Text,
-                input5.Text,
-                input6.Text,
-                input7.Text,
-                input8.Text,
-                input9.Text,
-                input10.Text,
-            };
-            int[] callibArrayInt = new int[10];
-            try
-            {
-                for (int i = 0; i < 10; i++)
-                {
-                    if (callibArray[i].Contains("-"))
-                    {
-                        callibArray[i] = callibArray[i].Substring(1);
-                    }
-                    if (callibArray[i] == "" || ((callibArray[i] == "0") && (i > 0 && i != 10)))
-                    {
-                        arrayIncomplete = true;
-                        continue;
-                    }
-                    callibArrayInt[i] = int.Parse(callibArray[i]);
-                }
-                if (arrayIncomplete)
-                {
-                    int range = callibArrayInt[9] - callibArrayInt[0];
-                    int step = range / 10;
-                    int dutyCycle = callibArrayInt[0];
-                    for (int i = 0; i < 10; i++)
-                    {
-                        if (callibArray[i] == "" || ((callibArray[i] == "0") && (i > 0 && i != 10)))
-                        {
-                            callibArrayInt[i] = dutyCycle;
-                        }
-                        dutyCycle += step;
-                    }
-                }
-                input1.Text = callibArrayInt[0].ToString();
-                input2.Text = callibArrayInt[1].ToString();
-                input3.Text = callibArrayInt[2].ToString();
-                input4.Text = callibArrayInt[3].ToString();
-                input5.Text = callibArrayInt[4].ToString();
-                input6.Text = callibArrayInt[5].ToString();
-                input7.Text = callibArrayInt[6].ToString();
-                input8.Text = callibArrayInt[7].ToString();
-                input9.Text = callibArrayInt[8].ToString();
-                input10.Text = callibArrayInt[9].ToString();
+            bool arrayIncomplete;
+            bool appendArray;
+            bool minVialExists = false;
+            bool maxVialExists = false;
+            arrayIncomplete = !(vialDutyBox.Lines.Length == totalVials - 1);
+            appendArray = (vialDutyBox.Lines.Length >= totalVials);
 
-                for (int i = 0; i < 10; i++)
+            int[] callibArrayInt = new int[totalVials];
+            for (int i = 0; i < totalVials; i++)
             {
+                callibArrayInt[i] = 0;
+                Console.WriteLine("CallibArrayInt " +  i.ToString() + " is now " + "0");
+            }
+            for (int i = 0; i < vialNumBox.Lines.Length; i++)
+            {
+                Console.WriteLine("Callibrating vial number " + vialNumBox.Lines[i].ToString());
+                Console.WriteLine("Callibrating to " + vialDutyBox.Lines[i].ToString());
+                callibArrayInt[int.Parse(vialNumBox.Lines[i]) - 1] = int.Parse(vialDutyBox.Lines[i]);
+                Console.WriteLine("Now ", int.Parse(vialNumBox.Lines[i]) - 1, "in CallibArrayInt is above");
+                if (int.Parse(vialNumBox.Lines[i]) == 1) { minVialExists = true; }
+                if (int.Parse(vialNumBox.Lines[i]) == totalVials) { maxVialExists = true; }
+            }
+            if (appendArray)
+            {
+                int vialNum;
+                int dutyCycle;
+                for (int i = totalVials; i < vialNumBox.Lines.Length; i++)
+                {
+                    if (int.TryParse(vialNumBox.Lines[i], out vialNum) && int.TryParse(vialDutyBox.Lines[i], out dutyCycle))
+                    {
+                        if (vialNum < 0) { vialNum *= -1; }
+                        if (dutyCycle < 0) { dutyCycle *= -1; }
+                        callibArrayInt[vialNum - 1] = dutyCycle;
+                    }
+                }
+            }
+            if (minVialExists && maxVialExists && arrayIncomplete)
+            {
+                clearButton_Click(sender, e);
+                int arrayMin = callibArrayInt.Where(f => f > 0).Min();
+                int range = callibArrayInt.Max() - arrayMin;
+                int step = range / totalVials;
+                int currentVial;
+                int dutyCycle;
+                for (int i = 0; i < totalVials; i++)
+                {
+                    currentVial = i + 1;
+                    
+                    if (callibArrayInt[i] == 0)
+                    {
+                        dutyCycle = arrayMin + step * i;
+                        callibArrayInt[i] = dutyCycle;   
+                    }
+                    else { dutyCycle = callibArrayInt[i]; }
+                    if (!string.IsNullOrWhiteSpace(vialNumBox.Text))
+                    {
+                        vialNumBox.AppendText("\r\n" + currentVial.ToString());
+                    }
+                    else
+                    {
+                        vialNumBox.AppendText(currentVial.ToString());
+                    }
+                    if (!string.IsNullOrWhiteSpace(vialDutyBox.Text))
+                    {
+                        vialDutyBox.AppendText("\r\n" + dutyCycle.ToString());
+                    }
+                    else
+                    {
+                        vialDutyBox.AppendText(dutyCycle.ToString());
+                    }
+                }
+                arrayIncomplete = false;
+            }
+            if (!arrayIncomplete)
+            {
+                for (int i = 0; i < totalVials; i++)
+                {
                     sendToPort("C" + i.ToString() + "D" + callibArrayInt[i].ToString());
                     Console.WriteLine("C" + i.ToString() + "D" + callibArrayInt[i].ToString() + "\n\n" + "Sent!");
                     Thread.Sleep(5);
+                }
             }
-            }
-            catch
+            else
             {
                 MessageBoxButtons buttons = MessageBoxButtons.OK;
                 DialogResult result = MessageBox.Show("Please ensure all of your inputted values are numeric, and sensible.\n\n" +
-                    "You must fill in duty cycles for at least Vial 1 and Vial 10.", "WARNING!", buttons, MessageBoxIcon.Warning);
+                    "You must fill in duty cycles for at least the first and last vials", "WARNING!", buttons, MessageBoxIcon.Warning);
             }
-            
         }
         private void connectDialog()
         {
@@ -184,66 +204,6 @@ namespace BioBox_Controller
             statusText.Text = "Disconnected";
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            sendToPort("P1");
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            sendToPort("P2");
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            sendToPort("P3");
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            sendToPort("P4");
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            sendToPort("P5");
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            sendToPort("P6");
-        }
-
-        private void button7_Click(object sender, EventArgs e)
-        {
-            sendToPort("P7");
-        }
-
-        private void button8_Click(object sender, EventArgs e)
-        {
-            sendToPort("P8");
-        }
-
-        private void button9_Click(object sender, EventArgs e)
-        {
-            sendToPort("P9");
-        }
-
-        private void button10_Click(object sender, EventArgs e)
-        {
-            sendToPort("P10");
-        }
-
-        private void button11_Click(object sender, EventArgs e)
-        {
-            sendToPort("P11");
-        }
-
-        private void button12_Click(object sender, EventArgs e)
-        {
-            sendToPort("P12");
-        }
-
         private void button16_Click(object sender, EventArgs e)
         {
             sendToPort("V0");
@@ -276,17 +236,22 @@ namespace BioBox_Controller
                         while ((line = streamReader.ReadLine()) != null)
                         {
                             string[] newStrings = line.Split(',');
-                            input1.Text = newStrings[0];
-                            input2.Text = newStrings[1];
-                            input3.Text = newStrings[2];
-                            input4.Text = newStrings[3];
-                            input5.Text = newStrings[4];
-                            input6.Text = newStrings[5];
-                            input7.Text = newStrings[6];
-                            input8.Text = newStrings[7];
-                            input9.Text = newStrings[8];
-                            input10.Text = newStrings[9];
-                            counter++;
+                            if (!string.IsNullOrWhiteSpace(vialNumBox.Text))
+                            {
+                                vialNumBox.AppendText("\r\n" + newStrings[0]);
+                            }
+                            else
+                            {
+                                vialNumBox.AppendText(newStrings[0]);
+                            }
+                            if (!string.IsNullOrWhiteSpace(vialDutyBox.Text))
+                            {
+                                vialDutyBox.AppendText("\r\n" + newStrings[1]);
+                            }
+                            else
+                            {
+                                vialDutyBox.AppendText(newStrings[1]);
+                            }
                         }
                     }
                 }
@@ -295,7 +260,7 @@ namespace BioBox_Controller
 
         private void exportButton_Click(object sender, EventArgs e)
         {
-            string line = convertCallibToText();
+            string[] lines = convertCallibToString();
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Timesheet CSV (*.csv)|*.csv|All Files (*.*)|*.*";
             saveFileDialog.Title = "Save Timesheet";
@@ -304,40 +269,93 @@ namespace BioBox_Controller
             {
                 using (StreamWriter outputFile = new StreamWriter(saveFileDialog.FileName))
                 {
-                    outputFile.WriteLine(line);
+                    foreach (string line in lines)
+                        outputFile.WriteLine(line);
                 }
 
             }
         }
 
-        private string convertCallibToText()
+        private string[] convertCallibToString()
         {
-            string output =
-                input1.Text + "," +
-                input2.Text + "," +
-                input3.Text + "," +
-                input4.Text + "," +
-                input5.Text + "," +
-                input6.Text + "," +
-                input7.Text + "," +
-                input8.Text + "," +
-                input9.Text + "," +
-                input10.Text;
+            string[] output = new string[vialNumBox.Lines.Length];
+            for (long i = 0; i < vialNumBox.Lines.Length; i++)
+            {
+                output[i] += vialNumBox.Lines[i] + "," + vialDutyBox.Lines[i];
+            }
+
             return output;
         }
 
         private void clearButton_Click(object sender, EventArgs e)
         {
-            input1.Text = "";
-            input2.Text = "";
-            input3.Text = "";
-            input4.Text = "";
-            input5.Text = "";
-            input6.Text = "";
-            input7.Text = "";
-            input8.Text = "";
-            input9.Text = "";
-            input10.Text = "";
+            vialNumBox.Text = "";
+            vialDutyBox.Text = "";
+        }
+
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            int vialNum;
+            int vialDuty;
+            if (int.TryParse(vialNumInput.Text, out vialNum) && int.TryParse(vialDutyInput.Text, out vialDuty) && vialNum <= totalVials) {
+                if (vialNum < 0){ vialNum *= -1; }
+                if (vialDuty < 0) { vialDuty *= -1; }
+                //if (vialNumBox.Lines.Contains(vialNum.ToString()))
+                //{
+                //    int index = vialNum + -1;
+                //    vialDutyBox.Lines[index] = vialDuty.ToString();
+                //}
+                //else
+                //{
+                    if (!string.IsNullOrWhiteSpace(vialNumBox.Text))
+                    {
+                        vialNumBox.AppendText("\r\n" + vialNum.ToString());
+                    }
+                    else
+                    {
+                        vialNumBox.AppendText(vialNum.ToString());
+                    }
+                    if (!string.IsNullOrWhiteSpace(vialDutyBox.Text))
+                    {
+                        vialDutyBox.AppendText("\r\n" + vialDuty.ToString());
+                    } 
+                    else
+                    {
+                        vialDutyBox.AppendText(vialDuty.ToString());
+                    }
+                    
+                //}
+            }
+        }
+
+        private void undoButton_Click(object sender, EventArgs e)
+        {
+            vialNumBox.Lines = vialNumBox.Lines.Take(vialNumBox.Lines.Length - 1).ToArray();
+            vialDutyBox.Lines = vialDutyBox.Lines.Take(vialDutyBox.Lines.Length - 1).ToArray();
+        }
+
+        private void totalNumVialsButton_Click(object sender, EventArgs e)
+        {
+            int vialNum;
+            if (int.TryParse(totalVialsInput.Text, out vialNum))
+            {
+                if (vialNum < 0) { vialNum *= -1; }
+                totalVials = vialNum;
+                Console.WriteLine("Total vials updated to: " +  vialNum);
+                sendToPort("T" + totalVials.ToString());
+                totalNum.Text = vialNum.ToString();
+            }
+        }
+
+        private void goToButton_Click(object sender, EventArgs e)
+        {
+            int vialNum;
+            if (int.TryParse(textBox1.Text, out vialNum) && vialNum < totalVials)
+            {
+                if (vialNum < 0) { vialNum *= -1; }
+                sendToPort("P" + vialNum.ToString());
+            }
+            
         }
     }
 }

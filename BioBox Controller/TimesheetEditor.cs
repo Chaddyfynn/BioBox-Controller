@@ -303,7 +303,7 @@ namespace BioBox_Controller
 
         private void viewDocumentationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("./BioBox_UI_Documentation.pdf");
+            System.Diagnostics.Process.Start("BioBox_UI_Documentation.pdf");
         }
 
         private void viewSourceToolStripMenuItem_Click(object sender, EventArgs e)

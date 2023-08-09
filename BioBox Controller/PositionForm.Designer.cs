@@ -42,55 +42,30 @@ namespace BioBox_Controller
             this.disconnectButton = new System.Windows.Forms.Button();
             this.portText = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.totalVialsInput = new System.Windows.Forms.TextBox();
+            this.totalNumVialsButton = new System.Windows.Forms.Button();
+            this.undoButton = new System.Windows.Forms.Button();
+            this.addButton = new System.Windows.Forms.Button();
+            this.vialDutyInput = new System.Windows.Forms.TextBox();
+            this.vialNumInput = new System.Windows.Forms.TextBox();
+            this.vialDutyBox = new System.Windows.Forms.RichTextBox();
+            this.vialNumBox = new System.Windows.Forms.RichTextBox();
             this.clearButton = new System.Windows.Forms.Button();
             this.importButton = new System.Windows.Forms.Button();
             this.exportButton = new System.Windows.Forms.Button();
             this.applyCalibButton = new System.Windows.Forms.Button();
-            this.input12 = new System.Windows.Forms.TextBox();
-            this.input11 = new System.Windows.Forms.TextBox();
-            this.input10 = new System.Windows.Forms.TextBox();
-            this.input9 = new System.Windows.Forms.TextBox();
-            this.input8 = new System.Windows.Forms.TextBox();
-            this.input7 = new System.Windows.Forms.TextBox();
-            this.input6 = new System.Windows.Forms.TextBox();
-            this.input5 = new System.Windows.Forms.TextBox();
-            this.input4 = new System.Windows.Forms.TextBox();
-            this.input3 = new System.Windows.Forms.TextBox();
-            this.input2 = new System.Windows.Forms.TextBox();
-            this.input1 = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.goToButton = new System.Windows.Forms.Button();
             this.button16 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.dots1 = new System.Windows.Forms.Label();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.title1 = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.totalNum = new System.Windows.Forms.Label();
             this.tabPage3.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -111,7 +86,7 @@ namespace BioBox_Controller
             this.tabPage3.Location = new System.Drawing.Point(4, 24);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(258, 258);
+            this.tabPage3.Size = new System.Drawing.Size(258, 364);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Settings";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -207,48 +182,105 @@ namespace BioBox_Controller
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.totalNum);
+            this.tabPage2.Controls.Add(this.label5);
+            this.tabPage2.Controls.Add(this.label2);
+            this.tabPage2.Controls.Add(this.label1);
+            this.tabPage2.Controls.Add(this.totalVialsInput);
+            this.tabPage2.Controls.Add(this.totalNumVialsButton);
+            this.tabPage2.Controls.Add(this.undoButton);
+            this.tabPage2.Controls.Add(this.addButton);
+            this.tabPage2.Controls.Add(this.vialDutyInput);
+            this.tabPage2.Controls.Add(this.vialNumInput);
+            this.tabPage2.Controls.Add(this.vialDutyBox);
+            this.tabPage2.Controls.Add(this.vialNumBox);
             this.tabPage2.Controls.Add(this.clearButton);
             this.tabPage2.Controls.Add(this.importButton);
             this.tabPage2.Controls.Add(this.exportButton);
             this.tabPage2.Controls.Add(this.applyCalibButton);
-            this.tabPage2.Controls.Add(this.input12);
-            this.tabPage2.Controls.Add(this.input11);
-            this.tabPage2.Controls.Add(this.input10);
-            this.tabPage2.Controls.Add(this.input9);
-            this.tabPage2.Controls.Add(this.input8);
-            this.tabPage2.Controls.Add(this.input7);
-            this.tabPage2.Controls.Add(this.input6);
-            this.tabPage2.Controls.Add(this.input5);
-            this.tabPage2.Controls.Add(this.input4);
-            this.tabPage2.Controls.Add(this.input3);
-            this.tabPage2.Controls.Add(this.input2);
-            this.tabPage2.Controls.Add(this.input1);
-            this.tabPage2.Controls.Add(this.label16);
-            this.tabPage2.Controls.Add(this.label15);
-            this.tabPage2.Controls.Add(this.label14);
-            this.tabPage2.Controls.Add(this.label13);
-            this.tabPage2.Controls.Add(this.label12);
-            this.tabPage2.Controls.Add(this.label11);
-            this.tabPage2.Controls.Add(this.label10);
-            this.tabPage2.Controls.Add(this.label9);
-            this.tabPage2.Controls.Add(this.label8);
-            this.tabPage2.Controls.Add(this.label7);
-            this.tabPage2.Controls.Add(this.label6);
-            this.tabPage2.Controls.Add(this.label5);
             this.tabPage2.Controls.Add(this.label4);
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(258, 258);
+            this.tabPage2.Size = new System.Drawing.Size(258, 364);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Calibration";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // totalVialsInput
+            // 
+            this.totalVialsInput.Location = new System.Drawing.Point(51, 151);
+            this.totalVialsInput.Name = "totalVialsInput";
+            this.totalVialsInput.Size = new System.Drawing.Size(39, 23);
+            this.totalVialsInput.TabIndex = 11;
+            // 
+            // totalNumVialsButton
+            // 
+            this.totalNumVialsButton.Location = new System.Drawing.Point(6, 151);
+            this.totalNumVialsButton.Name = "totalNumVialsButton";
+            this.totalNumVialsButton.Size = new System.Drawing.Size(39, 23);
+            this.totalNumVialsButton.TabIndex = 10;
+            this.totalNumVialsButton.Text = "Set Total";
+            this.totalNumVialsButton.UseVisualStyleBackColor = true;
+            this.totalNumVialsButton.Click += new System.EventHandler(this.totalNumVialsButton_Click);
+            // 
+            // undoButton
+            // 
+            this.undoButton.Location = new System.Drawing.Point(6, 108);
+            this.undoButton.Name = "undoButton";
+            this.undoButton.Size = new System.Drawing.Size(84, 23);
+            this.undoButton.TabIndex = 9;
+            this.undoButton.Text = "Undo";
+            this.undoButton.UseVisualStyleBackColor = true;
+            this.undoButton.Click += new System.EventHandler(this.undoButton_Click);
+            // 
+            // addButton
+            // 
+            this.addButton.Location = new System.Drawing.Point(6, 79);
+            this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(84, 23);
+            this.addButton.TabIndex = 9;
+            this.addButton.Text = "Add/Replace";
+            this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
+            // 
+            // vialDutyInput
+            // 
+            this.vialDutyInput.Location = new System.Drawing.Point(41, 50);
+            this.vialDutyInput.Name = "vialDutyInput";
+            this.vialDutyInput.Size = new System.Drawing.Size(49, 23);
+            this.vialDutyInput.TabIndex = 8;
+            // 
+            // vialNumInput
+            // 
+            this.vialNumInput.Location = new System.Drawing.Point(41, 22);
+            this.vialNumInput.Name = "vialNumInput";
+            this.vialNumInput.Size = new System.Drawing.Size(49, 23);
+            this.vialNumInput.TabIndex = 8;
+            // 
+            // vialDutyBox
+            // 
+            this.vialDutyBox.Location = new System.Drawing.Point(150, 21);
+            this.vialDutyBox.Name = "vialDutyBox";
+            this.vialDutyBox.ReadOnly = true;
+            this.vialDutyBox.Size = new System.Drawing.Size(102, 336);
+            this.vialDutyBox.TabIndex = 7;
+            this.vialDutyBox.Text = "";
+            // 
+            // vialNumBox
+            // 
+            this.vialNumBox.Location = new System.Drawing.Point(96, 21);
+            this.vialNumBox.Name = "vialNumBox";
+            this.vialNumBox.ReadOnly = true;
+            this.vialNumBox.Size = new System.Drawing.Size(48, 336);
+            this.vialNumBox.TabIndex = 7;
+            this.vialNumBox.Text = "";
+            // 
             // clearButton
             // 
-            this.clearButton.Location = new System.Drawing.Point(177, 232);
+            this.clearButton.Location = new System.Drawing.Point(6, 305);
             this.clearButton.Name = "clearButton";
-            this.clearButton.Size = new System.Drawing.Size(75, 23);
+            this.clearButton.Size = new System.Drawing.Size(84, 23);
             this.clearButton.TabIndex = 6;
             this.clearButton.Text = "Clear";
             this.clearButton.UseVisualStyleBackColor = true;
@@ -256,9 +288,9 @@ namespace BioBox_Controller
             // 
             // importButton
             // 
-            this.importButton.Location = new System.Drawing.Point(96, 204);
+            this.importButton.Location = new System.Drawing.Point(6, 247);
             this.importButton.Name = "importButton";
-            this.importButton.Size = new System.Drawing.Size(75, 23);
+            this.importButton.Size = new System.Drawing.Size(84, 23);
             this.importButton.TabIndex = 5;
             this.importButton.Text = "Import";
             this.importButton.UseVisualStyleBackColor = true;
@@ -266,9 +298,9 @@ namespace BioBox_Controller
             // 
             // exportButton
             // 
-            this.exportButton.Location = new System.Drawing.Point(96, 232);
+            this.exportButton.Location = new System.Drawing.Point(6, 276);
             this.exportButton.Name = "exportButton";
-            this.exportButton.Size = new System.Drawing.Size(75, 23);
+            this.exportButton.Size = new System.Drawing.Size(84, 23);
             this.exportButton.TabIndex = 4;
             this.exportButton.Text = "Export";
             this.exportButton.UseVisualStyleBackColor = true;
@@ -276,207 +308,13 @@ namespace BioBox_Controller
             // 
             // applyCalibButton
             // 
-            this.applyCalibButton.Location = new System.Drawing.Point(177, 204);
+            this.applyCalibButton.Location = new System.Drawing.Point(6, 334);
             this.applyCalibButton.Name = "applyCalibButton";
-            this.applyCalibButton.Size = new System.Drawing.Size(75, 23);
+            this.applyCalibButton.Size = new System.Drawing.Size(84, 23);
             this.applyCalibButton.TabIndex = 3;
             this.applyCalibButton.Text = "Apply";
             this.applyCalibButton.UseVisualStyleBackColor = true;
             this.applyCalibButton.Click += new System.EventHandler(this.applyCalibButton_Click);
-            // 
-            // input12
-            // 
-            this.input12.Location = new System.Drawing.Point(152, 175);
-            this.input12.Name = "input12";
-            this.input12.ReadOnly = true;
-            this.input12.Size = new System.Drawing.Size(100, 23);
-            this.input12.TabIndex = 2;
-            // 
-            // input11
-            // 
-            this.input11.Location = new System.Drawing.Point(152, 145);
-            this.input11.Name = "input11";
-            this.input11.ReadOnly = true;
-            this.input11.Size = new System.Drawing.Size(100, 23);
-            this.input11.TabIndex = 2;
-            // 
-            // input10
-            // 
-            this.input10.Location = new System.Drawing.Point(152, 116);
-            this.input10.Name = "input10";
-            this.input10.Size = new System.Drawing.Size(100, 23);
-            this.input10.TabIndex = 2;
-            // 
-            // input9
-            // 
-            this.input9.Location = new System.Drawing.Point(152, 85);
-            this.input9.Name = "input9";
-            this.input9.Size = new System.Drawing.Size(100, 23);
-            this.input9.TabIndex = 2;
-            // 
-            // input8
-            // 
-            this.input8.Location = new System.Drawing.Point(152, 55);
-            this.input8.Name = "input8";
-            this.input8.Size = new System.Drawing.Size(100, 23);
-            this.input8.TabIndex = 2;
-            // 
-            // input7
-            // 
-            this.input7.Location = new System.Drawing.Point(152, 25);
-            this.input7.Name = "input7";
-            this.input7.Size = new System.Drawing.Size(100, 23);
-            this.input7.TabIndex = 2;
-            // 
-            // input6
-            // 
-            this.input6.Location = new System.Drawing.Point(23, 175);
-            this.input6.Name = "input6";
-            this.input6.Size = new System.Drawing.Size(100, 23);
-            this.input6.TabIndex = 2;
-            // 
-            // input5
-            // 
-            this.input5.Location = new System.Drawing.Point(23, 146);
-            this.input5.Name = "input5";
-            this.input5.Size = new System.Drawing.Size(100, 23);
-            this.input5.TabIndex = 2;
-            // 
-            // input4
-            // 
-            this.input4.Location = new System.Drawing.Point(23, 115);
-            this.input4.Name = "input4";
-            this.input4.Size = new System.Drawing.Size(100, 23);
-            this.input4.TabIndex = 2;
-            // 
-            // input3
-            // 
-            this.input3.Location = new System.Drawing.Point(23, 86);
-            this.input3.Name = "input3";
-            this.input3.Size = new System.Drawing.Size(100, 23);
-            this.input3.TabIndex = 2;
-            // 
-            // input2
-            // 
-            this.input2.Location = new System.Drawing.Point(23, 55);
-            this.input2.Name = "input2";
-            this.input2.Size = new System.Drawing.Size(100, 23);
-            this.input2.TabIndex = 2;
-            // 
-            // input1
-            // 
-            this.input1.Location = new System.Drawing.Point(23, 25);
-            this.input1.Name = "input1";
-            this.input1.Size = new System.Drawing.Size(100, 23);
-            this.input1.TabIndex = 2;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(125, 178);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(27, 15);
-            this.label16.TabIndex = 1;
-            this.label16.Text = "12 -";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(125, 149);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(27, 15);
-            this.label15.TabIndex = 1;
-            this.label15.Text = "11 -";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(125, 118);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(27, 15);
-            this.label14.TabIndex = 1;
-            this.label14.Text = "10 -";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(131, 88);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(21, 15);
-            this.label13.TabIndex = 1;
-            this.label13.Text = "9 -";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(131, 58);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(21, 15);
-            this.label12.TabIndex = 1;
-            this.label12.Text = "8 -";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(131, 28);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(21, 15);
-            this.label11.TabIndex = 1;
-            this.label11.Text = "7 -";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(3, 178);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(21, 15);
-            this.label10.TabIndex = 1;
-            this.label10.Text = "6 -";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(3, 149);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(21, 15);
-            this.label9.TabIndex = 1;
-            this.label9.Text = "5 -";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(3, 119);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(21, 15);
-            this.label8.TabIndex = 1;
-            this.label8.Text = "4 -";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(3, 88);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(21, 15);
-            this.label7.TabIndex = 1;
-            this.label7.Text = "3 -";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 58);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(21, 15);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "2 -";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 29);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(21, 15);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "1 -";
             // 
             // label4
             // 
@@ -490,36 +328,40 @@ namespace BioBox_Controller
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.textBox1);
+            this.tabPage1.Controls.Add(this.goToButton);
             this.tabPage1.Controls.Add(this.button16);
             this.tabPage1.Controls.Add(this.button13);
-            this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.dots1);
-            this.tabPage1.Controls.Add(this.button12);
-            this.tabPage1.Controls.Add(this.button11);
-            this.tabPage1.Controls.Add(this.button10);
-            this.tabPage1.Controls.Add(this.button9);
-            this.tabPage1.Controls.Add(this.button8);
-            this.tabPage1.Controls.Add(this.button7);
-            this.tabPage1.Controls.Add(this.button6);
-            this.tabPage1.Controls.Add(this.button5);
-            this.tabPage1.Controls.Add(this.button4);
-            this.tabPage1.Controls.Add(this.button3);
-            this.tabPage1.Controls.Add(this.button2);
-            this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.title1);
             this.tabPage1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(258, 258);
+            this.tabPage1.Size = new System.Drawing.Size(258, 364);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "General";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(87, 22);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(75, 23);
+            this.textBox1.TabIndex = 5;
+            // 
+            // goToButton
+            // 
+            this.goToButton.Location = new System.Drawing.Point(6, 21);
+            this.goToButton.Name = "goToButton";
+            this.goToButton.Size = new System.Drawing.Size(75, 23);
+            this.goToButton.TabIndex = 4;
+            this.goToButton.Text = "Go To";
+            this.goToButton.UseVisualStyleBackColor = true;
+            this.goToButton.Click += new System.EventHandler(this.goToButton_Click);
+            // 
             // button16
             // 
-            this.button16.Location = new System.Drawing.Point(177, 229);
+            this.button16.Location = new System.Drawing.Point(87, 51);
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(75, 23);
             this.button16.TabIndex = 3;
@@ -529,165 +371,13 @@ namespace BioBox_Controller
             // 
             // button13
             // 
-            this.button13.Location = new System.Drawing.Point(96, 229);
+            this.button13.Location = new System.Drawing.Point(6, 51);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(75, 23);
             this.button13.TabIndex = 3;
             this.button13.Text = "Prev. Vial";
             this.button13.UseVisualStyleBackColor = true;
             this.button13.Click += new System.EventHandler(this.button13_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(72, 131);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(106, 15);
-            this.label2.TabIndex = 2;
-            this.label2.Text = ".................................";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(72, 73);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(106, 15);
-            this.label1.TabIndex = 2;
-            this.label1.Text = ".................................";
-            // 
-            // dots1
-            // 
-            this.dots1.AutoSize = true;
-            this.dots1.Location = new System.Drawing.Point(65, 102);
-            this.dots1.Name = "dots1";
-            this.dots1.Size = new System.Drawing.Size(118, 15);
-            this.dots1.TabIndex = 2;
-            this.dots1.Text = ".....................................";
-            // 
-            // button12
-            // 
-            this.button12.Enabled = false;
-            this.button12.Location = new System.Drawing.Point(59, 44);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(36, 23);
-            this.button12.TabIndex = 1;
-            this.button12.Text = "V12";
-            this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.button12_Click);
-            // 
-            // button11
-            // 
-            this.button11.Enabled = false;
-            this.button11.Location = new System.Drawing.Point(35, 73);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(36, 23);
-            this.button11.TabIndex = 1;
-            this.button11.Text = "V11";
-            this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.button11_Click);
-            // 
-            // button10
-            // 
-            this.button10.Enabled = false;
-            this.button10.Location = new System.Drawing.Point(23, 102);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(36, 23);
-            this.button10.TabIndex = 1;
-            this.button10.Text = "V10";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
-            // 
-            // button9
-            // 
-            this.button9.Location = new System.Drawing.Point(35, 131);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(36, 23);
-            this.button9.TabIndex = 1;
-            this.button9.Text = "V9";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(59, 160);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(36, 23);
-            this.button8.TabIndex = 1;
-            this.button8.Text = "V8";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(106, 169);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(36, 23);
-            this.button7.TabIndex = 1;
-            this.button7.Text = "V7";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(152, 160);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(36, 23);
-            this.button6.TabIndex = 1;
-            this.button6.Text = "V6";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(179, 131);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(36, 23);
-            this.button5.TabIndex = 1;
-            this.button5.Text = "V5";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(188, 102);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(36, 23);
-            this.button4.TabIndex = 1;
-            this.button4.Text = "V4";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(179, 73);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(36, 23);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "V3";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.Transparent;
-            this.button2.Location = new System.Drawing.Point(152, 44);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(36, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "V2";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.Location = new System.Drawing.Point(105, 34);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(36, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "V1";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // title1
             // 
@@ -708,13 +398,49 @@ namespace BioBox_Controller
             this.tabControl.Location = new System.Drawing.Point(11, 12);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(266, 286);
+            this.tabControl.Size = new System.Drawing.Size(266, 392);
             this.tabControl.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(5, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(34, 15);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Num";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(5, 53);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(32, 15);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "Duty";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 178);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(40, 15);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Total -";
+            // 
+            // totalNum
+            // 
+            this.totalNum.AutoSize = true;
+            this.totalNum.Location = new System.Drawing.Point(41, 178);
+            this.totalNum.Name = "totalNum";
+            this.totalNum.Size = new System.Drawing.Size(46, 15);
+            this.totalNum.TabIndex = 12;
+            this.totalNum.Text = "Not Set";
             // 
             // PositionForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(288, 310);
+            this.ClientSize = new System.Drawing.Size(288, 409);
             this.Controls.Add(this.tabControl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -731,6 +457,7 @@ namespace BioBox_Controller
             this.tabControl.ResumeLayout(false);
             this.ResumeLayout(false);
             this.FormClosing += PositionForm_FormClosing1;
+
         }
 
         private void PositionForm_FormClosing1(object sender, FormClosingEventArgs e)
@@ -756,50 +483,25 @@ namespace BioBox_Controller
         private TabPage tabPage1;
         private Button button16;
         private Button button13;
-        private Label label2;
-        private Label label1;
-        private Label dots1;
-        private Button button12;
-        private Button button11;
-        private Button button10;
-        private Button button9;
-        private Button button8;
-        private Button button7;
-        private Button button6;
-        private Button button5;
-        private Button button4;
-        private Button button3;
-        private Button button2;
-        private Button button1;
         private Label title1;
         private TabControl tabControl;
-        private TextBox input12;
-        private TextBox input11;
-        private TextBox input10;
-        private TextBox input9;
-        private TextBox input8;
-        private TextBox input7;
-        private TextBox input6;
-        private TextBox input5;
-        private TextBox input4;
-        private TextBox input3;
-        private TextBox input2;
-        private TextBox input1;
-        private Label label16;
-        private Label label15;
-        private Label label14;
-        private Label label13;
-        private Label label12;
-        private Label label11;
-        private Label label10;
-        private Label label9;
-        private Label label8;
-        private Label label7;
-        private Label label6;
-        private Label label5;
         private Button applyCalibButton;
         private Button importButton;
         private Button exportButton;
         private Button clearButton;
+        private TextBox vialDutyInput;
+        private TextBox vialNumInput;
+        private RichTextBox vialDutyBox;
+        private RichTextBox vialNumBox;
+        private TextBox textBox1;
+        private Button goToButton;
+        private Button undoButton;
+        private Button addButton;
+        private TextBox totalVialsInput;
+        private Button totalNumVialsButton;
+        private Label label2;
+        private Label label1;
+        private Label totalNum;
+        private Label label5;
     }
 }
