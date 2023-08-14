@@ -210,7 +210,7 @@
             // timesheetToolStripMenuItem
             // 
             this.timesheetToolStripMenuItem.Name = "timesheetToolStripMenuItem";
-            this.timesheetToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.timesheetToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.timesheetToolStripMenuItem.Text = "Timesheet";
             this.timesheetToolStripMenuItem.Click += new System.EventHandler(this.timesheetToolStripMenuItem_Click);
             // 
@@ -229,14 +229,14 @@
             // vialControllerToolStripMenuItem
             // 
             this.vialControllerToolStripMenuItem.Name = "vialControllerToolStripMenuItem";
-            this.vialControllerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.vialControllerToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.vialControllerToolStripMenuItem.Text = "Vial Controller";
             this.vialControllerToolStripMenuItem.Click += new System.EventHandler(this.vialControllerToolStripMenuItem_Click);
             // 
             // stirBarControllerToolStripMenuItem
             // 
             this.stirBarControllerToolStripMenuItem.Name = "stirBarControllerToolStripMenuItem";
-            this.stirBarControllerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.stirBarControllerToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.stirBarControllerToolStripMenuItem.Text = "Stir Bar Controller";
             this.stirBarControllerToolStripMenuItem.Click += new System.EventHandler(this.stirBarControllerToolStripMenuItem_Click);
             // 
@@ -264,6 +264,7 @@
             this.viewSourceToolStripMenuItem.Name = "viewSourceToolStripMenuItem";
             this.viewSourceToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
             this.viewSourceToolStripMenuItem.Text = "View Source";
+            this.viewSourceToolStripMenuItem.Click += new System.EventHandler(this.viewSourceToolStripMenuItem_Click_1);
             // 
             // delayTitle
             // 

@@ -7,8 +7,10 @@ using System.Drawing;
 using System.IO;
 using System.IO.Ports;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -86,12 +88,14 @@ namespace BioBox_Controller
 
         private void viewDocumentationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("BioBox_UI_Documentation.pdf");
-        }
-
-        private void viewSourceToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://github.com/Chaddyfynn/BioBox-Controller");
+            try
+            {
+                System.Diagnostics.Process.Start("BioBox_UI_Documentation.pdf");
+            }
+            catch
+            {
+                Console.WriteLine("Document not found...");
+            }
         }
 
         private void openTimesheetToolStripMenuItem_Click(object sender, EventArgs e)
@@ -104,33 +108,42 @@ namespace BioBox_Controller
                 // openFileDialog.InitialDirectory = "c:\\";
                 openFileDialog.Filter = "Timesheet CSV Files (*.csv)|*.csv|All files (*.*)|*.*";
                 openFileDialog.RestoreDirectory = true;
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                try
                 {
-                    filePath = openFileDialog.FileName;
-                    timesheetText.Text = filePath;
-                    statusStat.Text = "Active File";
-                    var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
-                    using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
                     {
-                        string line;
-                        long counter = 0;
-                        while ((line = streamReader.ReadLine()) != null)
+                        filePath = openFileDialog.FileName;
+                        timesheetText.Text = filePath;
+                        statusStat.Text = "Active File";
+                        var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+                        using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
                         {
-                            string[] newStrings = line.Split(',');
-                            Array.Resize(ref commands, commands.Length + 1);
-                            Array.Resize(ref times, times.Length + 1); 
-                            Array.Resize(ref messages, messages.Length + 1);
-                            Array.Resize(ref actions, actions.Length + 1);
-                            commands[counter] = newStrings[3];
-                            times[counter] = newStrings[1];
-                            messages[counter] = newStrings[2];
-                            actions[counter] = newStrings[0];
-                            counter++;
+                            string line;
+                            long counter = 0;
+                            while ((line = streamReader.ReadLine()) != null)
+                            {
+                                string[] newStrings = line.Split(',');
+                                Array.Resize(ref commands, commands.Length + 1);
+                                Array.Resize(ref times, times.Length + 1);
+                                Array.Resize(ref messages, messages.Length + 1);
+                                Array.Resize(ref actions, actions.Length + 1);
+                                commands[counter] = newStrings[3];
+                                times[counter] = newStrings[1];
+                                messages[counter] = newStrings[2];
+                                actions[counter] = newStrings[0];
+                                counter++;
+                            }
                         }
+                        nextActionStat.Text = actions[currentActionIndex];
+                        fileLoaded = true;
                     }
-                    nextActionStat.Text = actions[currentActionIndex];
-                    fileLoaded = true;
+                }
+                catch
+                {
+                    MessageBoxButtons buttons = MessageBoxButtons.OK;
+                    DialogResult result = MessageBox.Show("The file you have selected does not read as a BioBox UI Timesheet style CSV file.  " +
+                        "Please ensure the file you load meets the criteria described in Section 3.2 of the BioBox User Manual for version v2.1.1, " +
+                        "or that you have made it in the BioBox UI Edit -> Timesheet Window.", "File Open Error!", buttons, MessageBoxIcon.Warning);
                 }
             }
             
@@ -191,7 +204,7 @@ namespace BioBox_Controller
                 else
                 {
                     delayTimer.Enabled = false;
-                    runAction(currentCommand, currentMessage);
+                    runAction(currentCommand, currentMessage, sender, e);
                 }
                 currentActionIndex++;
                 if (currentActionIndex == messages.Length)
@@ -201,7 +214,7 @@ namespace BioBox_Controller
             }
         }
 
-        private void runAction(string command, string message) {
+        private void runAction(string command, string message, object sender, EventArgs e) {
             {
                 notProcessing = false;
                 if (command[0] == 'S')
@@ -229,6 +242,53 @@ namespace BioBox_Controller
                         MessageBoxButtons buttons = MessageBoxButtons.OK;
                         DialogResult result = MessageBox.Show("Waiting for user...\n\n" + "Press OK to continue..."
                             , "Caution!", buttons, MessageBoxIcon.Warning);
+                    }
+                    else if (command[1] == '2')
+                    {
+                        try
+                        {
+                            var filePath = message;
+                            var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+                            using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
+                            {
+                                string line;
+                                int max = 0;
+                                while ((line = streamReader.ReadLine()) != null)
+                                {
+                                    string[] newStrings = line.Split(',');
+                                    int num;
+                                    if (int.TryParse(newStrings[0], out num) && num >= max)
+                                    {
+                                        max = num;
+                                    }
+
+                                }
+                                sendToPort("T" + max.ToString(), false);
+                                Console.WriteLine("T" + max.ToString() + "\n\n" + "Sent!");
+                            }
+                            fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+                            using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
+                            {
+                                string line;
+                                while ((line = streamReader.ReadLine()) != null)
+                                {
+                                    string[] newStrings = line.Split(',');
+                                    int vialNum = int.Parse(newStrings[0]) - 1;
+                                    string vialString = vialNum.ToString();
+                                    sendToPort("C" + vialString + "D" + newStrings[1], false);
+                                    Console.WriteLine("C" + vialString + "D" + newStrings[1] + "\n\n" + "Sent!");
+                                    Thread.Sleep(5);
+                                }
+                            }
+                        }
+                        catch
+                        {
+                            MessageBoxButtons buttons = MessageBoxButtons.OK;
+                            DialogResult result = MessageBox.Show("The calibration file path does not exist, or the calibration file is improperly formatted.  " +
+                                "Please ensure the file you load meets the criteria described in Section 3.2 of the BioBox User Manual for version v2.1.1, " +
+                                "or that you have made it in the BioBox UI View -> Vial Controller -> Calibration Window.", "File Open Error!", buttons, MessageBoxIcon.Warning);
+                            stopButton_Click(sender, e);
+                        }
                     }
                 }
                 else if (command[0] == 'P')
@@ -422,6 +482,17 @@ namespace BioBox_Controller
             if (notProcessing)
             {
                 sendToPort("V1", false);
+            }
+        }
+
+        private void viewSourceToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            try {
+                System.Diagnostics.Process.Start("https://github.com/Chaddyfynn/BioBox-Controller");
+            }
+            catch
+            {
+                Console.WriteLine("Document not found...");
             }
         }
     }

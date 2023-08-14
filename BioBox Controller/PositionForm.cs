@@ -221,7 +221,7 @@ namespace BioBox_Controller
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 // openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter = "Callibration CSV Files (*.csv)|*.csv|All files (*.*)|*.*";
+                openFileDialog.Filter = "Calibration CSV Files (*.csv)|*.csv|All files (*.*)|*.*";
                 openFileDialog.RestoreDirectory = true;
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -232,7 +232,6 @@ namespace BioBox_Controller
                     using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
                     {
                         string line;
-                        long counter = 0;
                         while ((line = streamReader.ReadLine()) != null)
                         {
                             string[] newStrings = line.Split(',');
@@ -262,7 +261,7 @@ namespace BioBox_Controller
         {
             string[] lines = convertCallibToString();
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Timesheet CSV (*.csv)|*.csv|All Files (*.*)|*.*";
+            saveFileDialog.Filter = "Calibration CSV (*.csv)|*.csv|All Files (*.*)|*.*";
             saveFileDialog.Title = "Save Timesheet";
             saveFileDialog.ShowDialog();
             if (saveFileDialog.FileName != "")
@@ -356,6 +355,15 @@ namespace BioBox_Controller
                 sendToPort("P" + vialNum.ToString());
             }
             
+        }
+
+        private void dutyCycleButton_Click(object sender, EventArgs e)
+        {
+            int dutyCycle;
+            if (int.TryParse(dutyCycleBox.Text, out dutyCycle) && dutyCycle > 200 && dutyCycle < 4500)
+            {
+                sendToPort("D" + dutyCycle.ToString());
+            }
         }
     }
 }

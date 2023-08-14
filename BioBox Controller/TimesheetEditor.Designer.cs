@@ -52,6 +52,7 @@ namespace BioBox_Controller
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.loadCalibButton = new System.Windows.Forms.Button();
             this.waitForUserButton = new System.Windows.Forms.Button();
             this.clsoeCupButton = new System.Windows.Forms.Button();
             this.displayPromptButton = new System.Windows.Forms.Button();
@@ -197,6 +198,7 @@ namespace BioBox_Controller
             this.splitContainer1.Panel1.Controls.Add(this.label4);
             this.splitContainer1.Panel1.Controls.Add(this.label3);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
+            this.splitContainer1.Panel1.Controls.Add(this.loadCalibButton);
             this.splitContainer1.Panel1.Controls.Add(this.waitForUserButton);
             this.splitContainer1.Panel1.Controls.Add(this.clsoeCupButton);
             this.splitContainer1.Panel1.Controls.Add(this.displayPromptButton);
@@ -291,9 +293,9 @@ namespace BioBox_Controller
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(12, 233);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(61, 15);
+            this.label3.Size = new System.Drawing.Size(75, 15);
             this.label3.TabIndex = 1;
-            this.label3.Text = "Pelletron:";
+            this.label3.Text = "Accelerator:";
             // 
             // label1
             // 
@@ -304,6 +306,16 @@ namespace BioBox_Controller
             this.label1.Size = new System.Drawing.Size(51, 15);
             this.label1.TabIndex = 1;
             this.label1.Text = "Cooling:";
+            // 
+            // loadCalibButton
+            // 
+            this.loadCalibButton.Location = new System.Drawing.Point(122, 353);
+            this.loadCalibButton.Name = "loadCalibButton";
+            this.loadCalibButton.Size = new System.Drawing.Size(101, 23);
+            this.loadCalibButton.TabIndex = 0;
+            this.loadCalibButton.Text = "Load Calib. File";
+            this.loadCalibButton.UseVisualStyleBackColor = true;
+            this.loadCalibButton.Click += new System.EventHandler(this.loadCalibButton_Click);
             // 
             // waitForUserButton
             // 
@@ -565,6 +577,7 @@ namespace BioBox_Controller
             this.ResumeLayout(false);
             this.PerformLayout();
             this.FormClosing += TimesheetEditor_FormClosing;
+
         }
 
         private void TimesheetEditor_FormClosing(object sender, FormClosingEventArgs e)
@@ -620,5 +633,6 @@ namespace BioBox_Controller
         private Label label5;
         private Button clearButton;
         private ToolStripMenuItem newToolStripMenuItem;
+        private Button loadCalibButton;
     }
 }

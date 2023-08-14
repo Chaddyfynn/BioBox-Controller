@@ -17,7 +17,7 @@
     <ROW Property="ProductCode" Value="2057:{E883110F-D2BA-41F4-88C3-14A66CE2CCD4} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="BioBox UI"/>
-    <ROW Property="ProductVersion" Value="2.1.0" Options="32"/>
+    <ROW Property="ProductVersion" Value="2.1.1" Options="32"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{5F193159-AE22-44BF-AF57-BC672D89218B}"/>

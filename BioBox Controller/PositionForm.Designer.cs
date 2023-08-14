@@ -42,6 +42,10 @@ namespace BioBox_Controller
             this.disconnectButton = new System.Windows.Forms.Button();
             this.portText = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.totalNum = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.totalVialsInput = new System.Windows.Forms.TextBox();
             this.totalNumVialsButton = new System.Windows.Forms.Button();
             this.undoButton = new System.Windows.Forms.Button();
@@ -56,16 +60,14 @@ namespace BioBox_Controller
             this.applyCalibButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.dutyCycleBox = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.dutyCycleButton = new System.Windows.Forms.Button();
             this.goToButton = new System.Windows.Forms.Button();
             this.button16 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
             this.title1 = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.totalNum = new System.Windows.Forms.Label();
             this.tabPage3.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -207,6 +209,42 @@ namespace BioBox_Controller
             this.tabPage2.Text = "Calibration";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // totalNum
+            // 
+            this.totalNum.AutoSize = true;
+            this.totalNum.Location = new System.Drawing.Point(41, 178);
+            this.totalNum.Name = "totalNum";
+            this.totalNum.Size = new System.Drawing.Size(46, 15);
+            this.totalNum.TabIndex = 12;
+            this.totalNum.Text = "Not Set";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 178);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(40, 15);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Total -";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(5, 53);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(32, 15);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "Duty";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(5, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(34, 15);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Num";
+            // 
             // totalVialsInput
             // 
             this.totalVialsInput.Location = new System.Drawing.Point(51, 151);
@@ -328,7 +366,9 @@ namespace BioBox_Controller
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.dutyCycleBox);
             this.tabPage1.Controls.Add(this.textBox1);
+            this.tabPage1.Controls.Add(this.dutyCycleButton);
             this.tabPage1.Controls.Add(this.goToButton);
             this.tabPage1.Controls.Add(this.button16);
             this.tabPage1.Controls.Add(this.button13);
@@ -342,12 +382,29 @@ namespace BioBox_Controller
             this.tabPage1.Text = "General";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // dutyCycleBox
+            // 
+            this.dutyCycleBox.Location = new System.Drawing.Point(87, 46);
+            this.dutyCycleBox.Name = "dutyCycleBox";
+            this.dutyCycleBox.Size = new System.Drawing.Size(75, 23);
+            this.dutyCycleBox.TabIndex = 5;
+            // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(87, 22);
+            this.textBox1.Location = new System.Drawing.Point(87, 21);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(75, 23);
             this.textBox1.TabIndex = 5;
+            // 
+            // dutyCycleButton
+            // 
+            this.dutyCycleButton.Location = new System.Drawing.Point(6, 46);
+            this.dutyCycleButton.Name = "dutyCycleButton";
+            this.dutyCycleButton.Size = new System.Drawing.Size(75, 23);
+            this.dutyCycleButton.TabIndex = 4;
+            this.dutyCycleButton.Text = "Duty Cycle";
+            this.dutyCycleButton.UseVisualStyleBackColor = true;
+            this.dutyCycleButton.Click += new System.EventHandler(this.dutyCycleButton_Click);
             // 
             // goToButton
             // 
@@ -355,13 +412,13 @@ namespace BioBox_Controller
             this.goToButton.Name = "goToButton";
             this.goToButton.Size = new System.Drawing.Size(75, 23);
             this.goToButton.TabIndex = 4;
-            this.goToButton.Text = "Go To";
+            this.goToButton.Text = "Vial Pos.";
             this.goToButton.UseVisualStyleBackColor = true;
             this.goToButton.Click += new System.EventHandler(this.goToButton_Click);
             // 
             // button16
             // 
-            this.button16.Location = new System.Drawing.Point(87, 51);
+            this.button16.Location = new System.Drawing.Point(6, 87);
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(75, 23);
             this.button16.TabIndex = 3;
@@ -371,7 +428,7 @@ namespace BioBox_Controller
             // 
             // button13
             // 
-            this.button13.Location = new System.Drawing.Point(6, 51);
+            this.button13.Location = new System.Drawing.Point(87, 87);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(75, 23);
             this.button13.TabIndex = 3;
@@ -400,42 +457,6 @@ namespace BioBox_Controller
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(266, 392);
             this.tabControl.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(5, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(34, 15);
-            this.label1.TabIndex = 12;
-            this.label1.Text = "Num";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(5, 53);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(32, 15);
-            this.label2.TabIndex = 12;
-            this.label2.Text = "Duty";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 178);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(40, 15);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "Total -";
-            // 
-            // totalNum
-            // 
-            this.totalNum.AutoSize = true;
-            this.totalNum.Location = new System.Drawing.Point(41, 178);
-            this.totalNum.Name = "totalNum";
-            this.totalNum.Size = new System.Drawing.Size(46, 15);
-            this.totalNum.TabIndex = 12;
-            this.totalNum.Text = "Not Set";
             // 
             // PositionForm
             // 
@@ -503,5 +524,7 @@ namespace BioBox_Controller
         private Label label1;
         private Label totalNum;
         private Label label5;
+        private TextBox dutyCycleBox;
+        private Button dutyCycleButton;
     }
 }

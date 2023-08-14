@@ -303,12 +303,23 @@ namespace BioBox_Controller
 
         private void viewDocumentationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("BioBox_UI_Documentation.pdf");
+            try
+            {
+                System.Diagnostics.Process.Start("BioBox_UI_Documentation.pdf");
+            }
+            catch
+            {
+                Console.WriteLine("Document not found...");
+            }
         }
 
         private void viewSourceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/Chaddyfynn/BioBox-Controller");
+            try
+            {
+                System.Diagnostics.Process.Start("https://github.com/Chaddyfynn/BioBox-Controller");
+            }
+            catch { Console.WriteLine("Document not found..."); }
         }
 
         private void getTimesheetFromControllerToolStripMenuItem_Click(object sender, EventArgs e)
@@ -320,6 +331,24 @@ namespace BioBox_Controller
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             clearButton_Click(sender, e);
+        }
+
+        private void loadCalibButton_Click(object sender, EventArgs e)
+        {
+            var filePath = string.Empty;
+
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                // openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "Calibration CSV Files (*.csv)|*.csv|All files (*.*)|*.*";
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    filePath = openFileDialog.FileName;
+                    appendList("Open Calibration File", "/" , filePath, "U2");
+                }
+            }
         }
     }
 }
