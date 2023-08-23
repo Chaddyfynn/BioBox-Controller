@@ -22,6 +22,7 @@ namespace BioBox_Controller
         private string[] portNames;
         private string portName;
         private int totalVials;
+        private int vialOffset = 0;
 
         public PositionForm()
         {
@@ -206,12 +207,25 @@ namespace BioBox_Controller
 
         private void button16_Click(object sender, EventArgs e)
         {
-            sendToPort("V0");
+            int vialNum;
+            if (int.TryParse(currentVialText.Text, out vialNum)) {
+                if (vialNum < totalVials) { vialNum += 1; }
+                else { vialNum = 1;  }
+                sendToPort("V0");
+                currentVialText.Text = vialNum.ToString();
+             }
         }
 
         private void button13_Click(object sender, EventArgs e)
         {
-            sendToPort("V1");
+            int vialNum;
+            if (int.TryParse(currentVialText.Text, out vialNum))
+            {
+                if (vialNum > 1) { vialNum -= 1; }
+                else { vialNum = totalVials; }
+                sendToPort("V1");
+                currentVialText.Text = vialNum.ToString();
+            }
         }
 
         private void importButton_Click(object sender, EventArgs e)
@@ -349,21 +363,83 @@ namespace BioBox_Controller
         private void goToButton_Click(object sender, EventArgs e)
         {
             int vialNum;
-            if (int.TryParse(textBox1.Text, out vialNum) && vialNum < totalVials)
+            if (int.TryParse(textBox1.Text, out vialNum) && vialNum <= totalVials)
             {
                 if (vialNum < 0) { vialNum *= -1; }
+                vialNum += vialOffset;
                 sendToPort("P" + vialNum.ToString());
+                currentVialText.Text = vialNum.ToString();
             }
             
         }
 
         private void dutyCycleButton_Click(object sender, EventArgs e)
         {
-            int dutyCycle;
-            if (int.TryParse(dutyCycleBox.Text, out dutyCycle) && dutyCycle > 200 && dutyCycle < 4500)
+            float offset;
+            if (float.TryParse(dutyCycleBox.Text, out offset))
             {
-                sendToPort("D" + dutyCycle.ToString());
+                offset = (float) Math.Round(offset, 2);
+                if (offset < 0) { offset *= -1; }
+                //int intermediate = (int)offset;
+                //offset = intermediate / 10000;
+                sendToPort("D" + offset.ToString());
+                currentOffsetText.Text = offset.ToString();
             }
+        }
+
+        private void angleButton_Click(object sender, EventArgs e)
+        {
+            float angle;
+            if (float.TryParse(angleBox.Text, out angle))
+            {
+                angle = (float)Math.Round(angle, 2);
+                if (angle < 0) { angle *= -1; }
+                sendToPort("A" + angle.ToString());
+                currentVialText.Text = "N/A";
+            }
+        }
+
+        private void a2bButton_Click(object sender, EventArgs e)
+        {
+            float a;
+            float b;
+            if (float.TryParse(aBox.Text, out a) && float.TryParse(bBox.Text, out b))
+            {
+                a = (float)Math.Round(a, 2);
+                b = (float)Math.Round(b, 2);
+                if (a < 0) { a *= -1; }
+                if (b < 0) { b *= -1; }
+                sendToPort("A" + a.ToString());
+                Thread.Sleep(3000);
+                sendToPort("A" + b.ToString());
+            }
+        }
+
+        private void velocityButton_Click(object sender, EventArgs e)
+        {
+            int velocity;
+            if (int.TryParse(velocityBox.Text, out velocity))
+            {
+                if (velocity < 0) { velocity *= -1; }
+                sendToPort("Q" + velocity.ToString());
+                currentVelocityText.Text = velocity.ToString();
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int num;
+            if (int.TryParse(vialOffsetBox.Text, out num))
+            {
+                if (num < 0) { num *= -1; }
+                vialOffset = num;
+            }
+        }
+
+        private void homeButton_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = "1";
+            goToButton_Click(sender, e);
         }
     }
 }

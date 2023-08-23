@@ -60,6 +60,19 @@ namespace BioBox_Controller
             this.applyCalibButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.currentVelocityText = new System.Windows.Forms.Label();
+            this.currentAngleText = new System.Windows.Forms.Label();
+            this.currentVialText = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.velocityButton = new System.Windows.Forms.Button();
+            this.a2bButton = new System.Windows.Forms.Button();
+            this.angleButton = new System.Windows.Forms.Button();
+            this.bBox = new System.Windows.Forms.TextBox();
+            this.velocityBox = new System.Windows.Forms.TextBox();
+            this.aBox = new System.Windows.Forms.TextBox();
+            this.angleBox = new System.Windows.Forms.TextBox();
             this.dutyCycleBox = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dutyCycleButton = new System.Windows.Forms.Button();
@@ -68,6 +81,11 @@ namespace BioBox_Controller
             this.button13 = new System.Windows.Forms.Button();
             this.title1 = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
+            this.label7 = new System.Windows.Forms.Label();
+            this.currentOffsetText = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.homeButton = new System.Windows.Forms.Button();
+            this.vialOffsetBox = new System.Windows.Forms.TextBox();
             this.tabPage3.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -88,7 +106,7 @@ namespace BioBox_Controller
             this.tabPage3.Location = new System.Drawing.Point(4, 24);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(258, 364);
+            this.tabPage3.Size = new System.Drawing.Size(258, 492);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Settings";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -204,7 +222,7 @@ namespace BioBox_Controller
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(258, 364);
+            this.tabPage2.Size = new System.Drawing.Size(258, 492);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Calibration";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -232,9 +250,9 @@ namespace BioBox_Controller
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(5, 53);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(32, 15);
+            this.label2.Size = new System.Drawing.Size(38, 15);
             this.label2.TabIndex = 12;
-            this.label2.Text = "Duty";
+            this.label2.Text = "Angle";
             // 
             // label1
             // 
@@ -284,9 +302,9 @@ namespace BioBox_Controller
             // 
             // vialDutyInput
             // 
-            this.vialDutyInput.Location = new System.Drawing.Point(41, 50);
+            this.vialDutyInput.Location = new System.Drawing.Point(44, 50);
             this.vialDutyInput.Name = "vialDutyInput";
-            this.vialDutyInput.Size = new System.Drawing.Size(49, 23);
+            this.vialDutyInput.Size = new System.Drawing.Size(46, 23);
             this.vialDutyInput.TabIndex = 8;
             // 
             // vialNumInput
@@ -301,7 +319,7 @@ namespace BioBox_Controller
             this.vialDutyBox.Location = new System.Drawing.Point(150, 21);
             this.vialDutyBox.Name = "vialDutyBox";
             this.vialDutyBox.ReadOnly = true;
-            this.vialDutyBox.Size = new System.Drawing.Size(102, 336);
+            this.vialDutyBox.Size = new System.Drawing.Size(102, 465);
             this.vialDutyBox.TabIndex = 7;
             this.vialDutyBox.Text = "";
             // 
@@ -310,13 +328,13 @@ namespace BioBox_Controller
             this.vialNumBox.Location = new System.Drawing.Point(96, 21);
             this.vialNumBox.Name = "vialNumBox";
             this.vialNumBox.ReadOnly = true;
-            this.vialNumBox.Size = new System.Drawing.Size(48, 336);
+            this.vialNumBox.Size = new System.Drawing.Size(48, 465);
             this.vialNumBox.TabIndex = 7;
             this.vialNumBox.Text = "";
             // 
             // clearButton
             // 
-            this.clearButton.Location = new System.Drawing.Point(6, 305);
+            this.clearButton.Location = new System.Drawing.Point(9, 431);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(84, 23);
             this.clearButton.TabIndex = 6;
@@ -326,7 +344,7 @@ namespace BioBox_Controller
             // 
             // importButton
             // 
-            this.importButton.Location = new System.Drawing.Point(6, 247);
+            this.importButton.Location = new System.Drawing.Point(9, 373);
             this.importButton.Name = "importButton";
             this.importButton.Size = new System.Drawing.Size(84, 23);
             this.importButton.TabIndex = 5;
@@ -336,7 +354,7 @@ namespace BioBox_Controller
             // 
             // exportButton
             // 
-            this.exportButton.Location = new System.Drawing.Point(6, 276);
+            this.exportButton.Location = new System.Drawing.Point(9, 402);
             this.exportButton.Name = "exportButton";
             this.exportButton.Size = new System.Drawing.Size(84, 23);
             this.exportButton.TabIndex = 4;
@@ -346,7 +364,7 @@ namespace BioBox_Controller
             // 
             // applyCalibButton
             // 
-            this.applyCalibButton.Location = new System.Drawing.Point(6, 334);
+            this.applyCalibButton.Location = new System.Drawing.Point(9, 460);
             this.applyCalibButton.Name = "applyCalibButton";
             this.applyCalibButton.Size = new System.Drawing.Size(84, 23);
             this.applyCalibButton.TabIndex = 3;
@@ -366,6 +384,24 @@ namespace BioBox_Controller
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.homeButton);
+            this.tabPage1.Controls.Add(this.button1);
+            this.tabPage1.Controls.Add(this.currentOffsetText);
+            this.tabPage1.Controls.Add(this.currentVelocityText);
+            this.tabPage1.Controls.Add(this.currentAngleText);
+            this.tabPage1.Controls.Add(this.currentVialText);
+            this.tabPage1.Controls.Add(this.label7);
+            this.tabPage1.Controls.Add(this.label3);
+            this.tabPage1.Controls.Add(this.label8);
+            this.tabPage1.Controls.Add(this.label6);
+            this.tabPage1.Controls.Add(this.velocityButton);
+            this.tabPage1.Controls.Add(this.a2bButton);
+            this.tabPage1.Controls.Add(this.angleButton);
+            this.tabPage1.Controls.Add(this.bBox);
+            this.tabPage1.Controls.Add(this.velocityBox);
+            this.tabPage1.Controls.Add(this.aBox);
+            this.tabPage1.Controls.Add(this.angleBox);
+            this.tabPage1.Controls.Add(this.vialOffsetBox);
             this.tabPage1.Controls.Add(this.dutyCycleBox);
             this.tabPage1.Controls.Add(this.textBox1);
             this.tabPage1.Controls.Add(this.dutyCycleButton);
@@ -377,14 +413,126 @@ namespace BioBox_Controller
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(258, 364);
+            this.tabPage1.Size = new System.Drawing.Size(258, 492);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "General";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // currentVelocityText
+            // 
+            this.currentVelocityText.AutoSize = true;
+            this.currentVelocityText.Location = new System.Drawing.Point(112, 269);
+            this.currentVelocityText.Name = "currentVelocityText";
+            this.currentVelocityText.Size = new System.Drawing.Size(29, 15);
+            this.currentVelocityText.TabIndex = 9;
+            this.currentVelocityText.Text = "N/A";
+            // 
+            // currentAngleText
+            // 
+            this.currentAngleText.AutoSize = true;
+            this.currentAngleText.Location = new System.Drawing.Point(112, 254);
+            this.currentAngleText.Name = "currentAngleText";
+            this.currentAngleText.Size = new System.Drawing.Size(29, 15);
+            this.currentAngleText.TabIndex = 9;
+            this.currentAngleText.Text = "N/A";
+            // 
+            // currentVialText
+            // 
+            this.currentVialText.AutoSize = true;
+            this.currentVialText.Location = new System.Drawing.Point(112, 239);
+            this.currentVialText.Name = "currentVialText";
+            this.currentVialText.Size = new System.Drawing.Size(29, 15);
+            this.currentVialText.TabIndex = 9;
+            this.currentVialText.Text = "N/A";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 269);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(78, 15);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Set Velocity - ";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 254);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(92, 15);
+            this.label8.TabIndex = 9;
+            this.label8.Text = "Current Angle - ";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 239);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(53, 15);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "Set Vial -";
+            // 
+            // velocityButton
+            // 
+            this.velocityButton.Location = new System.Drawing.Point(6, 198);
+            this.velocityButton.Name = "velocityButton";
+            this.velocityButton.Size = new System.Drawing.Size(75, 23);
+            this.velocityButton.TabIndex = 7;
+            this.velocityButton.Text = "Velocity";
+            this.velocityButton.UseVisualStyleBackColor = true;
+            this.velocityButton.Click += new System.EventHandler(this.velocityButton_Click);
+            // 
+            // a2bButton
+            // 
+            this.a2bButton.Location = new System.Drawing.Point(6, 173);
+            this.a2bButton.Name = "a2bButton";
+            this.a2bButton.Size = new System.Drawing.Size(75, 23);
+            this.a2bButton.TabIndex = 7;
+            this.a2bButton.Text = "A to B";
+            this.a2bButton.UseVisualStyleBackColor = true;
+            this.a2bButton.Click += new System.EventHandler(this.a2bButton_Click);
+            // 
+            // angleButton
+            // 
+            this.angleButton.Location = new System.Drawing.Point(6, 93);
+            this.angleButton.Name = "angleButton";
+            this.angleButton.Size = new System.Drawing.Size(75, 23);
+            this.angleButton.TabIndex = 6;
+            this.angleButton.Text = "Angle";
+            this.angleButton.UseVisualStyleBackColor = true;
+            this.angleButton.Click += new System.EventHandler(this.angleButton_Click);
+            // 
+            // bBox
+            // 
+            this.bBox.Location = new System.Drawing.Point(168, 173);
+            this.bBox.Name = "bBox";
+            this.bBox.Size = new System.Drawing.Size(75, 23);
+            this.bBox.TabIndex = 5;
+            // 
+            // velocityBox
+            // 
+            this.velocityBox.Location = new System.Drawing.Point(87, 198);
+            this.velocityBox.Name = "velocityBox";
+            this.velocityBox.Size = new System.Drawing.Size(75, 23);
+            this.velocityBox.TabIndex = 5;
+            // 
+            // aBox
+            // 
+            this.aBox.Location = new System.Drawing.Point(87, 173);
+            this.aBox.Name = "aBox";
+            this.aBox.Size = new System.Drawing.Size(75, 23);
+            this.aBox.TabIndex = 5;
+            // 
+            // angleBox
+            // 
+            this.angleBox.Location = new System.Drawing.Point(87, 93);
+            this.angleBox.Name = "angleBox";
+            this.angleBox.Size = new System.Drawing.Size(75, 23);
+            this.angleBox.TabIndex = 5;
+            // 
             // dutyCycleBox
             // 
-            this.dutyCycleBox.Location = new System.Drawing.Point(87, 46);
+            this.dutyCycleBox.Location = new System.Drawing.Point(87, 69);
             this.dutyCycleBox.Name = "dutyCycleBox";
             this.dutyCycleBox.Size = new System.Drawing.Size(75, 23);
             this.dutyCycleBox.TabIndex = 5;
@@ -398,11 +546,11 @@ namespace BioBox_Controller
             // 
             // dutyCycleButton
             // 
-            this.dutyCycleButton.Location = new System.Drawing.Point(6, 46);
+            this.dutyCycleButton.Location = new System.Drawing.Point(6, 69);
             this.dutyCycleButton.Name = "dutyCycleButton";
             this.dutyCycleButton.Size = new System.Drawing.Size(75, 23);
             this.dutyCycleButton.TabIndex = 4;
-            this.dutyCycleButton.Text = "Duty Cycle";
+            this.dutyCycleButton.Text = "Offset";
             this.dutyCycleButton.UseVisualStyleBackColor = true;
             this.dutyCycleButton.Click += new System.EventHandler(this.dutyCycleButton_Click);
             // 
@@ -412,13 +560,13 @@ namespace BioBox_Controller
             this.goToButton.Name = "goToButton";
             this.goToButton.Size = new System.Drawing.Size(75, 23);
             this.goToButton.TabIndex = 4;
-            this.goToButton.Text = "Vial Pos.";
+            this.goToButton.Text = "Vial No.";
             this.goToButton.UseVisualStyleBackColor = true;
             this.goToButton.Click += new System.EventHandler(this.goToButton_Click);
             // 
             // button16
             // 
-            this.button16.Location = new System.Drawing.Point(6, 87);
+            this.button16.Location = new System.Drawing.Point(6, 122);
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(75, 23);
             this.button16.TabIndex = 3;
@@ -428,7 +576,7 @@ namespace BioBox_Controller
             // 
             // button13
             // 
-            this.button13.Location = new System.Drawing.Point(87, 87);
+            this.button13.Location = new System.Drawing.Point(87, 122);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(75, 23);
             this.button13.TabIndex = 3;
@@ -455,13 +603,58 @@ namespace BioBox_Controller
             this.tabControl.Location = new System.Drawing.Point(11, 12);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(266, 392);
+            this.tabControl.Size = new System.Drawing.Size(266, 520);
             this.tabControl.TabIndex = 1;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 284);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(69, 15);
+            this.label7.TabIndex = 9;
+            this.label7.Text = "Set Offset - ";
+            // 
+            // currentOffsetText
+            // 
+            this.currentOffsetText.AutoSize = true;
+            this.currentOffsetText.Location = new System.Drawing.Point(111, 284);
+            this.currentOffsetText.Name = "currentOffsetText";
+            this.currentOffsetText.Size = new System.Drawing.Size(29, 15);
+            this.currentOffsetText.TabIndex = 9;
+            this.currentOffsetText.Text = "N/A";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(6, 45);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "Vial Offset";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // homeButton
+            // 
+            this.homeButton.Location = new System.Drawing.Point(168, 122);
+            this.homeButton.Name = "homeButton";
+            this.homeButton.Size = new System.Drawing.Size(75, 23);
+            this.homeButton.TabIndex = 10;
+            this.homeButton.Text = "Home";
+            this.homeButton.UseVisualStyleBackColor = true;
+            this.homeButton.Click += new System.EventHandler(this.homeButton_Click);
+            // 
+            // vialOffsetBox
+            // 
+            this.vialOffsetBox.Location = new System.Drawing.Point(87, 45);
+            this.vialOffsetBox.Name = "vialOffsetBox";
+            this.vialOffsetBox.Size = new System.Drawing.Size(75, 23);
+            this.vialOffsetBox.TabIndex = 5;
             // 
             // PositionForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(288, 409);
+            this.ClientSize = new System.Drawing.Size(288, 544);
             this.Controls.Add(this.tabControl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -526,5 +719,23 @@ namespace BioBox_Controller
         private Label label5;
         private TextBox dutyCycleBox;
         private Button dutyCycleButton;
+        private Button velocityButton;
+        private Button a2bButton;
+        private Button angleButton;
+        private TextBox bBox;
+        private TextBox aBox;
+        private TextBox angleBox;
+        private Label currentAngleText;
+        private Label currentVialText;
+        private Label label8;
+        private Label label6;
+        private TextBox velocityBox;
+        private Label currentVelocityText;
+        private Label label3;
+        private Label currentOffsetText;
+        private Label label7;
+        private Button homeButton;
+        private Button button1;
+        private TextBox vialOffsetBox;
     }
 }
